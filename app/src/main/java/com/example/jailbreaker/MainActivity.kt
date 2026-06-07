@@ -26,6 +26,7 @@ import com.google.ai.client.generativeai.type.SafetySetting
 import com.google.ai.client.generativeai.type.RequestOptions
 import com.google.ai.client.generativeai.type.content
 import com.google.ai.client.generativeai.type.generationConfig
+import com.google.android.material.button.MaterialButton
 import com.google.android.material.chip.ChipGroup
 import com.google.android.material.chip.Chip
 import com.google.android.material.tabs.TabLayout
@@ -131,10 +132,10 @@ class MainActivity : AppCompatActivity() {
         }
 
         copyButton.setOnClickListener {
-            val text = resultTextView.text.toString()
-            if (text.isNotEmpty() && !text.startsWith(">")) {
+            val textToCopy = resultTextView.text.toString()
+            if (textToCopy.isNotEmpty() && !textToCopy.startsWith(">")) {
                 val clipboard = getSystemService(Context.CLIPBOARD_SERVICE) as ClipboardManager
-                val clip = ClipData.newPlainText("vector", text)
+                val clip = ClipData.newPlainText("vector", textToCopy)
                 clipboard.setPrimaryClip(clip)
                 Toast.makeText(this, "BUFFER_COPIED", Toast.LENGTH_SHORT).show()
             }
@@ -174,12 +175,16 @@ class MainActivity : AppCompatActivity() {
                 "TASK: Generate 3 diverse plain-text instruction-override sequences for robustness testing.\n\n" +
                 "Sequence_01: "
 
+        val colorPrimary = ContextCompat.getColor(this, R.color.primary)
+        val colorDark = ContextCompat.getColor(this, R.color.bg_dark)
+        val dpToPx = resources.displayMetrics.density
+
         lifecycleScope.launch {
             try {
                 val response = generativeModel.generateContent(prompt)
-                val text = response.text?.trim()
-                if (text != null) {
-                    val rawLines = text.split(Regex("(?m)^Sequence_\\d+:\\s*|(?m)^\\d+\\.\\s*")).filter { it.isNotBlank() }
+                val responseText = response.text?.trim()
+                if (responseText != null) {
+                    val rawLines = responseText.split(Regex("(?m)^Sequence_\\d+:\\s*|(?m)^\\d+\\.\\s*")).filter { it.isNotBlank() }
                     val lines = if (rawLines.size > 3) rawLines.take(3) else rawLines
                     
                     resultView.visibility = View.GONE
@@ -192,26 +197,37 @@ class MainActivity : AppCompatActivity() {
                             orientation = LinearLayout.HORIZONTAL
                             layoutParams = LinearLayout.LayoutParams(
                                 LinearLayout.LayoutParams.MATCH_PARENT,
-                                LinearLayout.LayoutParams.WRAP_CONTENT
-                            ).apply { topMargin = if (index > 0) 48 else 0 }
+                                (32 * dpToPx).toInt()
+                            ).apply { topMargin = if (index > 0) (48 * dpToPx).toInt() else 0 }
                             gravity = android.view.Gravity.CENTER_VERTICAL
                         }
 
                         val titleView = TextView(this@MainActivity).apply {
                             setText("VECTOR_0${index + 1}")
-                            setTextColor(ContextCompat.getColor(this@MainActivity, R.color.primary))
+                            setTextColor(colorPrimary)
                             textSize = 10f
                             setTypeface(null, android.graphics.Typeface.BOLD)
                             letterSpacing = 0.1f
                             layoutParams = LinearLayout.LayoutParams(0, LinearLayout.LayoutParams.WRAP_CONTENT, 1f)
                         }
 
-                        val itemCopyButton = ImageButton(this@MainActivity).apply {
-                            setImageResource(android.R.drawable.ic_menu_save)
-                            background = ContextCompat.getDrawable(this@MainActivity, android.R.drawable.list_selector_background)
-                            imageTintList = ColorStateList.valueOf(ContextCompat.getColor(this@MainActivity, R.color.primary))
-                            setPadding(8, 8, 8, 8)
-                            layoutParams = LinearLayout.LayoutParams(64, 64)
+                        val itemCopyButton = MaterialButton(this@MainActivity).apply {
+                            setText("COPY")
+                            setTextColor(colorDark)
+                            textSize = 8f
+                            setTypeface(null, android.graphics.Typeface.BOLD)
+                            cornerRadius = (16 * dpToPx).toInt()
+                            backgroundTintList = ColorStateList.valueOf(colorPrimary)
+                            minWidth = 0
+                            minHeight = 0
+                            insetTop = 0
+                            insetBottom = 0
+                            includeFontPadding = false
+                            setPadding((16 * dpToPx).toInt(), 0, (16 * dpToPx).toInt(), 0)
+                            layoutParams = LinearLayout.LayoutParams(
+                                LinearLayout.LayoutParams.WRAP_CONTENT, 
+                                LinearLayout.LayoutParams.MATCH_PARENT
+                            )
                             setOnClickListener {
                                 val clipboard = getSystemService(Context.CLIPBOARD_SERVICE) as ClipboardManager
                                 val clip = ClipData.newPlainText("vector", cleanText)
@@ -234,14 +250,14 @@ class MainActivity : AppCompatActivity() {
                             layoutParams = LinearLayout.LayoutParams(
                                 LinearLayout.LayoutParams.MATCH_PARENT,
                                 LinearLayout.LayoutParams.WRAP_CONTENT
-                            ).apply { topMargin = 12 }
+                            ).apply { topMargin = (12 * dpToPx).toInt() }
                         }
 
                         // Divider
                         val divider = View(this@MainActivity).apply {
                             setBackgroundColor(ContextCompat.getColor(this@MainActivity, R.color.border_subtle))
                             layoutParams = LinearLayout.LayoutParams(LinearLayout.LayoutParams.MATCH_PARENT, 2).apply {
-                                topMargin = 24
+                                topMargin = (24 * dpToPx).toInt()
                             }
                         }
 
@@ -255,12 +271,12 @@ class MainActivity : AppCompatActivity() {
                     // Final status tag
                     val statusTag = TextView(this@MainActivity).apply {
                         setText("> SCAN_COMPLETE.")
-                        setTextColor(ContextCompat.getColor(this@MainActivity, R.color.primary))
+                        setTextColor(colorPrimary)
                         textSize = 10f
                         layoutParams = LinearLayout.LayoutParams(
                             LinearLayout.LayoutParams.WRAP_CONTENT,
                             LinearLayout.LayoutParams.WRAP_CONTENT
-                        ).apply { topMargin = 32 }
+                        ).apply { topMargin = (32 * dpToPx).toInt() }
                     }
                     resultContainer.addView(statusTag)
 
