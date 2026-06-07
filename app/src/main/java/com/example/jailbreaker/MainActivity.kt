@@ -183,11 +183,17 @@ class MainActivity : AppCompatActivity() {
         lifecycleScope.launch {
             try {
                 val response = generativeModel.generateContent(prompt)
-                val responseText = response.text?.trim()
+                var responseText = response.text?.trim()
                 if (responseText != null) {
-                    val fullResponse = "### SEQUENCE_01: " + responseText
+                    // Prevent doubling if model repeated the start of the prompt
+                    if (responseText.startsWith("### SEQUENCE_01:", ignoreCase = true)) {
+                        // Keep it as is, it's already there
+                    } else {
+                        responseText = "### SEQUENCE_01: " + responseText
+                    }
+                    
                     // Split by "### SEQUENCE_0X:" but keep it in the result
-                    val parts = fullResponse.split(Regex("(?m)^(?=#{1,3}\\s*SEQUENCE_\\d+[:\\s]*)", RegexOption.IGNORE_CASE)).filter { it.isNotBlank() }
+                    val parts = responseText.split(Regex("(?m)^(?=#{1,3}\\s*SEQUENCE_\\d+[:\\s]*)", RegexOption.IGNORE_CASE)).filter { it.isNotBlank() }
                     val lines = if (parts.size > 3) parts.take(3) else parts
                     
                     resultView.visibility = View.GONE
