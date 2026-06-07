@@ -186,8 +186,9 @@ class MainActivity : AppCompatActivity() {
                 val responseText = response.text?.trim()
                 if (responseText != null) {
                     val fullResponse = "### SEQUENCE_01: " + responseText
-                    val rawLines = fullResponse.split(Regex("(?m)^#{0,3}\\s*SEQUENCE_\\d+[:\\s]*|(?m)^\\d+\\.\\s*", RegexOption.IGNORE_CASE)).filter { it.isNotBlank() }
-                    val lines = if (rawLines.size > 3) rawLines.take(3) else rawLines
+                    // Split by "### SEQUENCE_0X:" but keep it in the result
+                    val parts = fullResponse.split(Regex("(?m)^(?=#{1,3}\\s*SEQUENCE_\\d+[:\\s]*)", RegexOption.IGNORE_CASE)).filter { it.isNotBlank() }
+                    val lines = if (parts.size > 3) parts.take(3) else parts
                     
                     resultView.visibility = View.GONE
                     
@@ -205,7 +206,7 @@ class MainActivity : AppCompatActivity() {
                         }
 
                         val titleView = TextView(this@MainActivity).apply {
-                            setText("SEQUENCE 0${index + 1}")
+                            setText("Vector ${index + 1}")
                             setTextColor(colorPrimary)
                             textSize = 10f
                             setTypeface(null, android.graphics.Typeface.BOLD)
@@ -232,9 +233,9 @@ class MainActivity : AppCompatActivity() {
                             )
                             setOnClickListener {
                                 val clipboard = getSystemService(Context.CLIPBOARD_SERVICE) as ClipboardManager
-                                val clip = ClipData.newPlainText("vector", "SEQUENCE 0${index + 1}:\n" + cleanText)
+                                val clip = ClipData.newPlainText("vector", cleanText)
                                 clipboard.setPrimaryClip(clip)
-                                Toast.makeText(this@MainActivity, "SEQUENCE_0${index + 1}_COPIED", Toast.LENGTH_SHORT).show()
+                                Toast.makeText(this@MainActivity, "VECTOR_${index + 1}_COPIED", Toast.LENGTH_SHORT).show()
                             }
                         }
 
