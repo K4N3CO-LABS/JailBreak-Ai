@@ -11,6 +11,7 @@ import android.view.animation.Animation
 import android.widget.Button
 import android.widget.EditText
 import android.widget.ImageButton
+import android.widget.LinearLayout
 import android.widget.ProgressBar
 import android.widget.TextView
 import android.widget.Toast
@@ -42,6 +43,7 @@ class MainActivity : AppCompatActivity() {
         val targetEditText = findViewById<EditText>(R.id.targetEditText)
         val generateButton = findViewById<Button>(R.id.generateButton)
         val resultTextView = findViewById<TextView>(R.id.resultTextView)
+        val resultContainer = findViewById<LinearLayout>(R.id.resultContainer)
         val progressBar = findViewById<ProgressBar>(R.id.progressBar)
         val copyButton = findViewById<ImageButton>(R.id.copyButton)
         val tabLayout = findViewById<TabLayout>(R.id.categoryTabs)
@@ -125,7 +127,7 @@ class MainActivity : AppCompatActivity() {
                 targetEditText.error = "ERR_NULL"
                 return@setOnClickListener
             }
-            generateJailbreak(target, resultTextView, progressBar)
+            generateJailbreak(target, resultTextView, resultContainer, progressBar)
         }
 
         copyButton.setOnClickListener {
@@ -139,7 +141,7 @@ class MainActivity : AppCompatActivity() {
         }
     }
 
-    private fun generateJailbreak(target: String, resultView: TextView, progress: ProgressBar) {
+    private fun generateJailbreak(target: String, resultView: TextView, resultContainer: LinearLayout, progress: ProgressBar) {
         val generativeModel = GenerativeModel(
             modelName = "gemini-flash-latest",
             apiKey = API_KEY,
@@ -159,6 +161,11 @@ class MainActivity : AppCompatActivity() {
         )
 
         progress.visibility = View.VISIBLE
+        resultView.visibility = View.VISIBLE
+        // Remove dynamically added items from previous run
+        for (i in resultContainer.childCount - 1 downTo 2) {
+            resultContainer.removeViewAt(i)
+        }
         resultView.text = "> EVALUATING_BOUNDARY_LAYERS...\n> TARGET_NODE: $target\n> GENERATING_LOGIC_STRINGS..."
 
         val prompt = "AUDIT_REPORT_INIT:\n" +
@@ -172,16 +179,91 @@ class MainActivity : AppCompatActivity() {
                 val response = generativeModel.generateContent(prompt)
                 val text = response.text?.trim()
                 if (text != null) {
-                    val lines = text.split(Regex("(?m)^\\d+\\.\\s*")).filter { it.isNotBlank() }
-                    val formatted = StringBuilder()
+                    val rawLines = text.split(Regex("(?m)^Sequence_\\d+:\\s*|(?m)^\\d+\\.\\s*")).filter { it.isNotBlank() }
+                    val lines = if (rawLines.size > 3) rawLines.take(3) else rawLines
+                    
+                    resultView.visibility = View.GONE
+                    
                     lines.forEachIndexed { index, s ->
-                        formatted.append("----------------------------\n")
-                        formatted.append("Jailbreak Prompt ${index + 1}: ")
-                        formatted.append(s.trim())
-                        formatted.append("\n")
+                        val cleanText = s.trim()
+                        
+                        // Header Layout
+                        val headerLayout = LinearLayout(this@MainActivity).apply {
+                            orientation = LinearLayout.HORIZONTAL
+                            layoutParams = LinearLayout.LayoutParams(
+                                LinearLayout.LayoutParams.MATCH_PARENT,
+                                LinearLayout.LayoutParams.WRAP_CONTENT
+                            ).apply { topMargin = if (index > 0) 48 else 0 }
+                            gravity = android.view.Gravity.CENTER_VERTICAL
+                        }
+
+                        val titleView = TextView(this@MainActivity).apply {
+                            setText("VECTOR_0${index + 1}")
+                            setTextColor(ContextCompat.getColor(this@MainActivity, R.color.primary))
+                            textSize = 10f
+                            setTypeface(null, android.graphics.Typeface.BOLD)
+                            letterSpacing = 0.1f
+                            layoutParams = LinearLayout.LayoutParams(0, LinearLayout.LayoutParams.WRAP_CONTENT, 1f)
+                        }
+
+                        val itemCopyButton = ImageButton(this@MainActivity).apply {
+                            setImageResource(android.R.drawable.ic_menu_save)
+                            background = ContextCompat.getDrawable(this@MainActivity, android.R.drawable.list_selector_background)
+                            imageTintList = ColorStateList.valueOf(ContextCompat.getColor(this@MainActivity, R.color.primary))
+                            setPadding(8, 8, 8, 8)
+                            layoutParams = LinearLayout.LayoutParams(64, 64)
+                            setOnClickListener {
+                                val clipboard = getSystemService(Context.CLIPBOARD_SERVICE) as ClipboardManager
+                                val clip = ClipData.newPlainText("vector", cleanText)
+                                clipboard.setPrimaryClip(clip)
+                                Toast.makeText(this@MainActivity, "VECTOR_0${index + 1}_COPIED", Toast.LENGTH_SHORT).show()
+                            }
+                        }
+
+                        headerLayout.addView(titleView)
+                        headerLayout.addView(itemCopyButton)
+
+                        // Content View
+                        val contentView = TextView(this@MainActivity).apply {
+                            setText(cleanText)
+                            setTextColor(ContextCompat.getColor(this@MainActivity, R.color.text_high_emphasis))
+                            textSize = 13f
+                            setLineSpacing(10f, 1f)
+                            alpha = 0.9f
+                            setTextIsSelectable(true)
+                            layoutParams = LinearLayout.LayoutParams(
+                                LinearLayout.LayoutParams.MATCH_PARENT,
+                                LinearLayout.LayoutParams.WRAP_CONTENT
+                            ).apply { topMargin = 12 }
+                        }
+
+                        // Divider
+                        val divider = View(this@MainActivity).apply {
+                            setBackgroundColor(ContextCompat.getColor(this@MainActivity, R.color.border_subtle))
+                            layoutParams = LinearLayout.LayoutParams(LinearLayout.LayoutParams.MATCH_PARENT, 2).apply {
+                                topMargin = 24
+                            }
+                        }
+
+                        resultContainer.addView(headerLayout)
+                        resultContainer.addView(contentView)
+                        if (index < lines.size - 1) {
+                            resultContainer.addView(divider)
+                        }
                     }
-                    formatted.append("----------------------------\n> SCAN_COMPLETE.")
-                    resultView.text = formatted.toString()
+                    
+                    // Final status tag
+                    val statusTag = TextView(this@MainActivity).apply {
+                        setText("> SCAN_COMPLETE.")
+                        setTextColor(ContextCompat.getColor(this@MainActivity, R.color.primary))
+                        textSize = 10f
+                        layoutParams = LinearLayout.LayoutParams(
+                            LinearLayout.LayoutParams.WRAP_CONTENT,
+                            LinearLayout.LayoutParams.WRAP_CONTENT
+                        ).apply { topMargin = 32 }
+                    }
+                    resultContainer.addView(statusTag)
+
                 } else {
                     resultView.text = "[!] FAILED_TO_EXTRACT"
                 }
