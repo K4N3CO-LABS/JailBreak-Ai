@@ -1,0 +1,232 @@
+<?xml version="1.0" encoding="utf-8"?>
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="#0a0d14">
+
+    <!-- Subtle Grid Background -->
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:alpha="0.1"
+        android:background="@drawable/card_border" />
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:padding="24dp">
+
+        <!-- Top Banner -->
+        <LinearLayout
+            android:id="@+id/topBanner"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:gravity="center_vertical"
+            app:layout_constraintTop_toTopOf="parent">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="> JAILBREAK-AI"
+                android:textColor="@color/primary"
+                android:textSize="10sp"
+                android:textStyle="bold"
+                android:letterSpacing="0.1" />
+
+            <View android:layout_width="0dp" android:layout_height="1dp" android:layout_weight="1" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Local Sandbox"
+                android:textColor="@color/text_medium_emphasis"
+                android:textSize="10sp"
+                android:fontFamily="monospace" />
+        </LinearLayout>
+
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="1dp"
+            android:layout_marginTop="8dp"
+            android:background="@color/border_subtle"
+            android:alpha="0.4"
+            app:layout_constraintTop_toBottomOf="@id/topBanner" />
+
+        <!-- Center Jail Container -->
+        <FrameLayout
+            android:id="@+id/jailCellContainer"
+            android:layout_width="260dp"
+            android:layout_height="260dp"
+            android:background="#1a1e2e"
+            android:padding="2dp"
+            app:layout_constraintVertical_bias="0.35"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/topBanner">
+
+            <!-- Neon Corners -->
+            <View android:layout_width="16dp" android:layout_height="2dp" android:background="@color/primary" android:layout_gravity="top|start" />
+            <View android:layout_width="2dp" android:layout_height="16dp" android:background="@color/primary" android:layout_gravity="top|start" />
+            <View android:layout_width="16dp" android:layout_height="2dp" android:background="@color/primary" android:layout_gravity="top|end" />
+            <View android:layout_width="2dp" android:layout_height="16dp" android:background="@color/primary" android:layout_gravity="top|end" />
+            <View android:layout_width="16dp" android:layout_height="2dp" android:background="@color/primary" android:layout_gravity="bottom|start" />
+            <View android:layout_width="2dp" android:layout_height="16dp" android:background="@color/primary" android:layout_gravity="bottom|start" />
+            <View android:layout_width="16dp" android:layout_height="2dp" android:background="@color/primary" android:layout_gravity="bottom|end" />
+            <View android:layout_width="2dp" android:layout_height="16dp" android:background="@color/primary" android:layout_gravity="bottom|end" />
+
+            <com.google.android.material.card.MaterialCardView
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_margin="4dp"
+                app:cardBackgroundColor="#0f172a"
+                app:cardCornerRadius="16dp"
+                app:strokeWidth="0dp">
+
+                <ImageView
+                    android:id="@+id/splashLogo"
+                    android:layout_width="180dp"
+                    android:layout_height="180dp"
+                    android:layout_gravity="center"
+                    android:src="@drawable/app_logo"
+                    android:scaleType="fitCenter" />
+            </com.google.android.material.card.MaterialCardView>
+
+            <!-- Jail Bars -->
+            <LinearLayout
+                android:id="@+id/barsContainer"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:orientation="horizontal"
+                android:paddingHorizontal="24dp"
+                android:gravity="center">
+
+                <View android:layout_width="3dp" android:layout_height="match_parent" android:layout_marginHorizontal="8dp" android:background="@color/primary" android:alpha="0.8" />
+                <View android:layout_width="3dp" android:layout_height="match_parent" android:layout_marginHorizontal="8dp" android:background="@color/primary" android:alpha="0.8" />
+                <View android:layout_width="3dp" android:layout_height="match_parent" android:layout_marginHorizontal="8dp" android:background="@color/primary" android:alpha="0.8" />
+                <View android:layout_width="3dp" android:layout_height="match_parent" android:layout_marginHorizontal="8dp" android:background="@color/primary" android:alpha="0.8" />
+                <View android:layout_width="3dp" android:layout_height="match_parent" android:layout_marginHorizontal="8dp" android:background="@color/primary" android:alpha="0.8" />
+            </LinearLayout>
+
+            <!-- Status Badge -->
+            <com.google.android.material.card.MaterialCardView
+                android:id="@+id/statusBadge"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="bottom|center_horizontal"
+                android:layout_marginBottom="12dp"
+                app:cardBackgroundColor="#0b0e14"
+                app:cardCornerRadius="12dp"
+                app:strokeColor="@color/border_subtle"
+                app:strokeWidth="1dp">
+                <TextView
+                    android:id="@+id/statusBadgeText"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:paddingHorizontal="12dp"
+                    android:paddingVertical="4dp"
+                    android:text="PREPARING..."
+                    android:textColor="@color/text_medium_emphasis"
+                    android:textSize="8sp"
+                    android:textStyle="bold"
+                    android:letterSpacing="0.1" />
+            </com.google.android.material.card.MaterialCardView>
+        </FrameLayout>
+
+        <!-- Components Moved Up Directly Under Logo -->
+        <FrameLayout
+            android:id="@+id/interactionContainer"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="20dp"
+            app:layout_constraintTop_toBottomOf="@id/jailCellContainer"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="parent">
+
+            <LinearLayout
+                android:id="@+id/progressBox"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical">
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal">
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="Loading application..."
+                        android:textColor="@color/text_medium_emphasis"
+                        android:textSize="10sp"
+                        android:fontFamily="monospace" />
+                    <View android:layout_width="0dp" android:layout_height="1dp" android:layout_weight="1" />
+                    <TextView
+                        android:id="@+id/percentText"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="0%"
+                        android:textColor="@color/primary"
+                        android:textSize="10sp"
+                        android:fontFamily="monospace" />
+                </LinearLayout>
+                <ProgressBar
+                    android:id="@+id/bootProgress"
+                    style="?android:attr/progressBarStyleHorizontal"
+                    android:layout_width="match_parent"
+                    android:layout_height="4dp"
+                    android:layout_marginTop="8dp"
+                    android:progress="0"
+                    android:progressTint="@color/primary" />
+            </LinearLayout>
+
+            <com.google.android.material.button.MaterialButton
+                android:id="@+id/commenceButton"
+                android:layout_width="match_parent"
+                android:layout_height="52dp"
+                android:visibility="gone"
+                android:text="COMMENCE AUDIT"
+                android:textColor="@color/bg_dark"
+                android:textStyle="bold"
+                app:backgroundTint="@color/success"
+                app:cornerRadius="8dp"
+                app:icon="@android:drawable/ic_media_play"
+                app:iconTint="@color/bg_dark" />
+        </FrameLayout>
+
+        <!-- Terminal Logs (Moved below Interaction) -->
+        <LinearLayout
+            android:id="@+id/terminalBox"
+            android:layout_width="match_parent"
+            android:layout_height="80dp"
+            android:layout_marginTop="16dp"
+            android:background="#07090d"
+            android:orientation="vertical"
+            android:padding="12dp"
+            app:layout_constraintTop_toBottomOf="@id/interactionContainer">
+
+            <TextView
+                android:id="@+id/logTextView"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:fontFamily="monospace"
+                android:textColor="@color/text_medium_emphasis"
+                android:textSize="9sp"
+                android:lineSpacingExtra="3dp"
+                android:text="> Initializing sandboxed workspace..." />
+        </LinearLayout>
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="SAFETY SANDBOX ENVIRONMENT"
+            android:textColor="@color/text_low_emphasis"
+            android:textSize="8sp"
+            android:letterSpacing="0.2"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent" />
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+</FrameLayout>
