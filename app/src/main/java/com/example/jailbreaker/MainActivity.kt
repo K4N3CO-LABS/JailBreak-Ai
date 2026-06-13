@@ -43,10 +43,24 @@ class MainActivity : AppCompatActivity() {
     private val MASTER_API_KEY = BuildConfig.GEMINI_API_KEY
     private lateinit var prefs: SharedPreferences
     private val PREF_KEY = "user_api_key"
+    private var lastBackPressTime: Long = 0
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
+
+        // Handle double back to exit
+        onBackPressedDispatcher.addCallback(this, object : androidx.activity.OnBackPressedCallback(true) {
+            override fun handleOnBackPressed() {
+                val currentTime = System.currentTimeMillis()
+                if (currentTime - lastBackPressTime < 2000) {
+                    finish()
+                } else {
+                    lastBackPressTime = currentTime
+                    Toast.makeText(this@MainActivity, "Push Back Again to Exit App", Toast.LENGTH_SHORT).show()
+                }
+            }
+        })
 
         prefs = getSharedPreferences("jailbreak_prefs", Context.MODE_PRIVATE)
 

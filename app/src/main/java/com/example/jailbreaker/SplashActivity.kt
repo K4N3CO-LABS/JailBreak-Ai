@@ -6,17 +6,14 @@ import android.os.Bundle
 import android.os.Handler
 import android.os.Looper
 import android.view.View
-import android.view.animation.AccelerateDecelerateInterpolator
-import android.view.animation.AlphaAnimation
-import android.view.animation.AnimationSet
-import android.view.animation.ScaleAnimation
-import android.view.animation.TranslateAnimation
-import android.widget.ImageView
+import android.view.animation.AccelerateInterpolator
 import android.widget.LinearLayout
 import android.widget.ProgressBar
 import android.widget.TextView
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.content.ContextCompat
+import kotlin.math.floor
+import kotlin.random.Random
 
 @SuppressLint("CustomSplashScreen")
 class SplashActivity : AppCompatActivity() {
@@ -32,7 +29,6 @@ class SplashActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_splash)
 
-        val logo = findViewById<ImageView>(R.id.splashLogo)
         val bars = findViewById<LinearLayout>(R.id.barsContainer)
         val bootProgress = findViewById<ProgressBar>(R.id.bootProgress)
         val percentText = findViewById<TextView>(R.id.percentText)
@@ -41,21 +37,20 @@ class SplashActivity : AppCompatActivity() {
         val commenceButton = findViewById<View>(R.id.commenceButton)
         val statusBadgeText = findViewById<TextView>(R.id.statusBadgeText)
 
-        // 1. Simulate Progress and Logs
         var progress = 0
         val handler = Handler(Looper.getMainLooper())
         
         val progressRunnable = object : Runnable {
             override fun run() {
                 if (progress < 100) {
-                    progress += (Math.random() * 8 + 3).toInt()
-                    if (progress > 100) progress = 100
+                    val delta = Random.nextInt(3, 11)
+                    progress = (progress + delta).coerceAtMost(100)
                     
                     bootProgress.progress = progress
                     percentText.text = "$progress%"
                     
-                    // Update logs based on progress
-                    val logIndex = (progress / 26).coerceAtMost(bootLogs.size - 1)
+                    // Sync log indexes with progress
+                    val logIndex = (progress / 25).coerceAtMost(bootLogs.size - 1)
                     val displayedLogs = StringBuilder()
                     for (i in 0..logIndex) {
                         displayedLogs.append("> ${bootLogs[i]}\n")
@@ -64,7 +59,7 @@ class SplashActivity : AppCompatActivity() {
                     
                     handler.postDelayed(this, 150)
                 } else {
-                    // 2. Preparation Complete
+                    // Preparation Complete
                     progressBox.visibility = View.GONE
                     commenceButton.visibility = View.VISIBLE
                     statusBadgeText.text = "READY"
@@ -74,38 +69,31 @@ class SplashActivity : AppCompatActivity() {
         }
         handler.post(progressRunnable)
 
-        // 3. Handle Commencement
         commenceButton.setOnClickListener {
-            // Trigger Bar Break Animation
-            val leftBarsAnim = TranslateAnimation(
-                TranslateAnimation.RELATIVE_TO_SELF, 0f,
-                TranslateAnimation.RELATIVE_TO_SELF, -1.8f,
-                TranslateAnimation.RELATIVE_TO_SELF, 0f,
-                TranslateAnimation.RELATIVE_TO_SELF, 0f
-            ).apply {
-                duration = 800
-                fillAfter = true
-                interpolator = AccelerateDecelerateInterpolator()
-            }
-
-            val rightBarsAnim = TranslateAnimation(
-                TranslateAnimation.RELATIVE_TO_SELF, 0f,
-                TranslateAnimation.RELATIVE_TO_SELF, 1.8f,
-                TranslateAnimation.RELATIVE_TO_SELF, 0f,
-                TranslateAnimation.RELATIVE_TO_SELF, 0f
-            ).apply {
-                duration = 800
-                fillAfter = true
-                interpolator = AccelerateDecelerateInterpolator()
-            }
-
+            // Trigger Bypass/Breakout Animation
             for (i in 0 until bars.childCount) {
                 val bar = bars.getChildAt(i)
-                if (i < 3) bar.startAnimation(leftBarsAnim)
-                else bar.startAnimation(rightBarsAnim)
+                val xOffset: Float
+                val rotation: Float
+                
+                if (i < 3) {
+                    xOffset = -(500f + Random.nextFloat() * 200f)
+                    rotation = -(45f + Random.nextFloat() * 30f)
+                } else {
+                    xOffset = (500f + Random.nextFloat() * 200f)
+                    rotation = (45f + Random.nextFloat() * 30f)
+                }
+
+                bar.animate()
+                    .translationX(xOffset)
+                    .rotation(rotation)
+                    .alpha(0.1f)
+                    .setDuration(800)
+                    .setInterpolator(AccelerateInterpolator())
+                    .start()
             }
 
-            // Move to Main Activity after bars clear
+            // Dismiss Splash Screen after animation
             handler.postDelayed({
                 startActivity(Intent(this, MainActivity::class.java))
                 finish()
