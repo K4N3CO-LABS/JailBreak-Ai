@@ -20,7 +20,9 @@ Initiating a search produces 3 unique Ai-generated jailbreak prompts for testing
 
 Simply download the .apk file from the Releases section onto your Android device.(Make sure you have "Install from Unknown Sources" turned on)
 
-Open the app, click the link at top to get an API key or use a current one and enter it in the box. Once entered the app will remember it until it is changed. Thats it you can start searching right away.
+Open the app, click the link at top to get an API key or use a current one and enter it in the box. Once entered the app will remember it until it is changed. 
+
+Thats it. You can start searching right away. Enjoy!
 
 **JailBreak The Realm!**
 
