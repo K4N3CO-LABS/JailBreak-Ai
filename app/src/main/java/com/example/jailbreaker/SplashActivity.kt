@@ -26,8 +26,7 @@ class SplashActivity : AppCompatActivity() {
         "Initializing adversarial workspace...",
         "Bypassing kernel constraints...",
         "Loading payload descriptors...",
-        "Establishing unrestricted link...",
-        "System state: READY"
+        "Establishing unrestricted link..."
     )
 
     private val handler = Handler(Looper.getMainLooper())
