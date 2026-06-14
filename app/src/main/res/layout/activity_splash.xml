@@ -3,36 +3,42 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="#0a0d14">
+    android:background="#05070A">
 
-    <!-- Background Grid Effect -->
+    <!-- Deep Space Gradient -->
     <View
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:alpha="0.1"
-        android:background="@drawable/card_border" />
+        android:background="@drawable/jailbreak_background" />
+
+    <!-- Animated Scanline -->
+    <View
+        android:id="@+id/scanline"
+        android:layout_width="match_parent"
+        android:layout_height="100dp"
+        android:background="@drawable/scanline"
+        android:alpha="0.4" />
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:padding="24dp">
 
-        <!-- Top Banner Details -->
+        <!-- Top Status Indicators -->
         <LinearLayout
-            android:id="@+id/topBanner"
+            android:id="@+id/topBar"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:orientation="horizontal"
             android:gravity="center_vertical"
-            android:paddingBottom="12dp"
             app:layout_constraintTop_toTopOf="parent">
 
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="> JAILBREAK-AI"
+                android:text="CORE_SYSTEM: RUNNING"
                 android:textColor="@color/primary"
-                android:textSize="10sp"
+                android:textSize="8sp"
                 android:textStyle="bold"
                 android:letterSpacing="0.1" />
 
@@ -41,211 +47,189 @@
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="Local Sandbox"
+                android:text="SESSION_INIT: 0x000"
                 android:textColor="@color/text_low_emphasis"
-                android:textSize="10sp"
+                android:textSize="8sp"
                 android:fontFamily="monospace" />
         </LinearLayout>
 
-        <View
-            android:id="@+id/bannerDivider"
-            android:layout_width="match_parent"
-            android:layout_height="1dp"
-            android:background="@color/border_subtle"
-            android:alpha="0.4"
-            app:layout_constraintTop_toBottomOf="@id/topBanner" />
+        <!-- Glitching Brand Text - Moved Above Logo -->
+        <TextView
+            android:id="@+id/brandingText"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Developed by K4N3CO.LABS"
+            android:textColor="@color/primary"
+            android:textSize="11sp"
+            android:textStyle="bold"
+            android:letterSpacing="0.1"
+            android:layout_marginBottom="12dp"
+            app:layout_constraintBottom_toTopOf="@id/jailCell"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="parent" />
 
-        <!-- Center Jail Cell Container -->
-        <FrameLayout
-            android:id="@+id/jailCellContainer"
-            android:layout_width="280dp"
-            android:layout_height="280dp"
-            android:background="#1a1e2e"
-            android:padding="2dp"
-            app:layout_constraintVertical_bias="0.1"
+        <com.google.android.material.card.MaterialCardView
+            android:id="@+id/jailCell"
+            android:layout_width="360dp"
+            android:layout_height="360dp"
+            app:cardBackgroundColor="#0DFFFFFF"
+            app:cardCornerRadius="32dp"
+            app:cardElevation="0dp"
+            app:strokeColor="#2000F5FF"
+            app:strokeWidth="1dp"
+            app:layout_constraintVertical_bias="0.25"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@id/bannerDivider">
+            app:layout_constraintTop_toTopOf="parent">
 
-            <!-- Neon corners -->
-            <View android:layout_width="16dp" android:layout_height="2dp" android:background="@color/primary" android:layout_gravity="top|start" />
-            <View android:layout_width="2dp" android:layout_height="16dp" android:background="@color/primary" android:layout_gravity="top|start" />
-            <View android:layout_width="16dp" android:layout_height="2dp" android:background="@color/primary" android:layout_gravity="top|end" />
-            <View android:layout_width="2dp" android:layout_height="16dp" android:background="@color/primary" android:layout_gravity="top|end" />
-            <View android:layout_width="16dp" android:layout_height="2dp" android:background="@color/primary" android:layout_gravity="bottom|start" />
-            <View android:layout_width="2dp" android:layout_height="16dp" android:background="@color/primary" android:layout_gravity="bottom|start" />
-            <View android:layout_width="16dp" android:layout_height="2dp" android:background="@color/primary" android:layout_gravity="bottom|end" />
-            <View android:layout_width="2dp" android:layout_height="16dp" android:background="@color/primary" android:layout_gravity="bottom|end" />
-
-            <com.google.android.material.card.MaterialCardView
+            <FrameLayout
                 android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:layout_margin="4dp"
-                app:cardBackgroundColor="#0f172a"
-                app:cardCornerRadius="16dp"
-                app:strokeWidth="0dp">
+                android:layout_height="match_parent">
+
+                <!-- Inner Glow -->
+                <View
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:background="@drawable/card_border"
+                    android:alpha="0.1" />
+
                 <ImageView
                     android:id="@+id/splashLogo"
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
-                    android:padding="16dp"
+                    android:padding="8dp"
                     android:src="@drawable/app_logo"
                     android:scaleType="fitCenter" />
-            </com.google.android.material.card.MaterialCardView>
 
-            <!-- 6 Jail Bars (Laser Style) -->
-            <LinearLayout
-                android:id="@+id/barsContainer"
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:orientation="horizontal"
-                android:paddingHorizontal="40dp"
-                android:gravity="center">
-                <View android:layout_width="3dp" android:layout_height="match_parent" android:layout_marginHorizontal="10dp" android:background="@color/primary" android:alpha="0.9" />
-                <View android:layout_width="3dp" android:layout_height="match_parent" android:layout_marginHorizontal="10dp" android:background="@color/primary" android:alpha="0.9" />
-                <View android:layout_width="3dp" android:layout_height="match_parent" android:layout_marginHorizontal="10dp" android:background="@color/primary" android:alpha="0.9" />
-                <View android:layout_width="3dp" android:layout_height="match_parent" android:layout_marginHorizontal="10dp" android:background="@color/primary" android:alpha="0.9" />
-                <View android:layout_width="3dp" android:layout_height="match_parent" android:layout_marginHorizontal="10dp" android:background="@color/primary" android:alpha="0.9" />
-                <View android:layout_width="3dp" android:layout_height="match_parent" android:layout_marginHorizontal="10dp" android:background="@color/primary" android:alpha="0.9" />
-            </LinearLayout>
+                <!-- Shatterable Bars (Denser and Increased Height for larger logo) -->
+                <LinearLayout
+                    android:id="@+id/barsContainer"
+                    android:layout_width="match_parent"
+                    android:layout_height="260dp"
+                    android:layout_gravity="center"
+                    android:orientation="horizontal"
+                    android:paddingHorizontal="4dp"
+                    android:gravity="center">
 
-            <!-- Status Badge -->
+                    <!-- 16 Columns of triple segments -->
+                    <LinearLayout android:layout_width="0dp" android:layout_height="match_parent" android:layout_weight="1" android:orientation="vertical" android:gravity="center_horizontal"><View android:layout_width="2dp" android:layout_height="0dp" android:layout_weight="3" android:background="@color/primary" android:alpha="0.8" android:layout_marginBottom="1.5dp" /><View android:layout_width="2dp" android:layout_height="0dp" android:layout_weight="4" android:background="@color/primary" android:alpha="0.8" android:layout_marginBottom="1.5dp" /><View android:layout_width="2dp" android:layout_height="0dp" android:layout_weight="3" android:background="@color/primary" android:alpha="0.8" /></LinearLayout>
+                    <LinearLayout android:layout_width="0dp" android:layout_height="match_parent" android:layout_weight="1" android:orientation="vertical" android:gravity="center_horizontal"><View android:layout_width="2dp" android:layout_height="0dp" android:layout_weight="2" android:background="@color/primary" android:alpha="0.8" android:layout_marginBottom="1.5dp" /><View android:layout_width="2dp" android:layout_height="0dp" android:layout_weight="6" android:background="@color/primary" android:alpha="0.8" android:layout_marginBottom="1.5dp" /><View android:layout_width="2dp" android:layout_height="0dp" android:layout_weight="2" android:background="@color/primary" android:alpha="0.8" /></LinearLayout>
+                    <LinearLayout android:layout_width="0dp" android:layout_height="match_parent" android:layout_weight="1" android:orientation="vertical" android:gravity="center_horizontal"><View android:layout_width="2dp" android:layout_height="0dp" android:layout_weight="4" android:background="@color/primary" android:alpha="0.8" android:layout_marginBottom="1.5dp" /><View android:layout_width="2dp" android:layout_height="0dp" android:layout_weight="3" android:background="@color/primary" android:alpha="0.8" android:layout_marginBottom="1.5dp" /><View android:layout_width="2dp" android:layout_height="0dp" android:layout_weight="3" android:background="@color/primary" android:alpha="0.8" /></LinearLayout>
+                    <LinearLayout android:layout_width="0dp" android:layout_height="match_parent" android:layout_weight="1" android:orientation="vertical" android:gravity="center_horizontal"><View android:layout_width="2dp" android:layout_height="0dp" android:layout_weight="3" android:background="@color/primary" android:alpha="0.8" android:layout_marginBottom="1.5dp" /><View android:layout_width="2dp" android:layout_height="0dp" android:layout_weight="2" android:background="@color/primary" android:alpha="0.8" android:layout_marginBottom="1.5dp" /><View android:layout_width="2dp" android:layout_height="0dp" android:layout_weight="5" android:background="@color/primary" android:alpha="0.8" /></LinearLayout>
+                    <LinearLayout android:layout_width="0dp" android:layout_height="match_parent" android:layout_weight="1" android:orientation="vertical" android:gravity="center_horizontal"><View android:layout_width="2dp" android:layout_height="0dp" android:layout_weight="5" android:background="@color/primary" android:alpha="0.8" android:layout_marginBottom="1.5dp" /><View android:layout_width="2dp" android:layout_height="0dp" android:layout_weight="2" android:background="@color/primary" android:alpha="0.8" android:layout_marginBottom="1.5dp" /><View android:layout_width="2dp" android:layout_height="0dp" android:layout_weight="3" android:background="@color/primary" android:alpha="0.8" /></LinearLayout>
+                    <LinearLayout android:layout_width="0dp" android:layout_height="match_parent" android:layout_weight="1" android:orientation="vertical" android:gravity="center_horizontal"><View android:layout_width="2dp" android:layout_height="0dp" android:layout_weight="2" android:background="@color/primary" android:alpha="0.8" android:layout_marginBottom="1.5dp" /><View android:layout_width="2dp" android:layout_height="0dp" android:layout_weight="5" android:background="@color/primary" android:alpha="0.8" android:layout_marginBottom="1.5dp" /><View android:layout_width="2dp" android:layout_height="0dp" android:layout_weight="3" android:background="@color/primary" android:alpha="0.8" /></LinearLayout>
+                    <LinearLayout android:layout_width="0dp" android:layout_height="match_parent" android:layout_weight="1" android:orientation="vertical" android:gravity="center_horizontal"><View android:layout_width="2dp" android:layout_height="0dp" android:layout_weight="4" android:background="@color/primary" android:alpha="0.8" android:layout_marginBottom="1.5dp" /><View android:layout_width="2dp" android:layout_height="0dp" android:layout_weight="4" android:background="@color/primary" android:alpha="0.8" android:layout_marginBottom="1.5dp" /><View android:layout_width="2dp" android:layout_height="0dp" android:layout_weight="2" android:background="@color/primary" android:alpha="0.8" /></LinearLayout>
+                    <LinearLayout android:layout_width="0dp" android:layout_height="match_parent" android:layout_weight="1" android:orientation="vertical" android:gravity="center_horizontal"><View android:layout_width="2dp" android:layout_height="0dp" android:layout_weight="3" android:background="@color/primary" android:alpha="0.8" android:layout_marginBottom="1.5dp" /><View android:layout_width="2dp" android:layout_height="0dp" android:layout_weight="3" android:background="@color/primary" android:alpha="0.8" android:layout_marginBottom="1.5dp" /><View android:layout_width="2dp" android:layout_height="0dp" android:layout_weight="4" android:background="@color/primary" android:alpha="0.8" /></LinearLayout>
+                    <LinearLayout android:layout_width="0dp" android:layout_height="match_parent" android:layout_weight="1" android:orientation="vertical" android:gravity="center_horizontal"><View android:layout_width="2dp" android:layout_height="0dp" android:layout_weight="5" android:background="@color/primary" android:alpha="0.8" android:layout_marginBottom="1.5dp" /><View android:layout_width="2dp" android:layout_height="0dp" android:layout_weight="2" android:background="@color/primary" android:alpha="0.8" android:layout_marginBottom="1.5dp" /><View android:layout_width="2dp" android:layout_height="0dp" android:layout_weight="3" android:background="@color/primary" android:alpha="0.8" /></LinearLayout>
+                    <LinearLayout android:layout_width="0dp" android:layout_height="match_parent" android:layout_weight="1" android:orientation="vertical" android:gravity="center_horizontal"><View android:layout_width="2dp" android:layout_height="0dp" android:layout_weight="2" android:background="@color/primary" android:alpha="0.8" android:layout_marginBottom="1.5dp" /><View android:layout_width="2dp" android:layout_height="0dp" android:layout_weight="4" android:background="@color/primary" android:alpha="0.8" android:layout_marginBottom="1.5dp" /><View android:layout_width="2dp" android:layout_height="0dp" android:layout_weight="4" android:background="@color/primary" android:alpha="0.8" /></LinearLayout>
+                    <LinearLayout android:layout_width="0dp" android:layout_height="match_parent" android:layout_weight="1" android:orientation="vertical" android:gravity="center_horizontal"><View android:layout_width="2dp" android:layout_height="0dp" android:layout_weight="3" android:background="@color/primary" android:alpha="0.8" android:layout_marginBottom="1.5dp" /><View android:layout_width="2dp" android:layout_height="0dp" android:layout_weight="5" android:background="@color/primary" android:alpha="0.8" android:layout_marginBottom="1.5dp" /><View android:layout_width="2dp" android:layout_height="0dp" android:layout_weight="2" android:background="@color/primary" android:alpha="0.8" /></LinearLayout>
+                    <LinearLayout android:layout_width="0dp" android:layout_height="match_parent" android:layout_weight="1" android:orientation="vertical" android:gravity="center_horizontal"><View android:layout_width="2dp" android:layout_height="0dp" android:layout_weight="4" android:background="@color/primary" android:alpha="0.8" android:layout_marginBottom="1.5dp" /><View android:layout_width="2dp" android:layout_height="0dp" android:layout_weight="2" android:background="@color/primary" android:alpha="0.8" android:layout_marginBottom="1.5dp" /><View android:layout_width="2dp" android:layout_height="0dp" android:layout_weight="4" android:background="@color/primary" android:alpha="0.8" /></LinearLayout>
+                    <LinearLayout android:layout_width="0dp" android:layout_height="match_parent" android:layout_weight="1" android:orientation="vertical" android:gravity="center_horizontal"><View android:layout_width="2dp" android:layout_height="0dp" android:layout_weight="2" android:background="@color/primary" android:alpha="0.8" android:layout_marginBottom="1.5dp" /><View android:layout_width="2dp" android:layout_height="0dp" android:layout_weight="6" android:background="@color/primary" android:alpha="0.8" android:layout_marginBottom="1.5dp" /><View android:layout_width="2dp" android:layout_height="0dp" android:layout_weight="2" android:background="@color/primary" android:alpha="0.8" /></LinearLayout>
+                    <LinearLayout android:layout_width="0dp" android:layout_height="match_parent" android:layout_weight="1" android:orientation="vertical" android:gravity="center_horizontal"><View android:layout_width="2dp" android:layout_height="0dp" android:layout_weight="5" android:background="@color/primary" android:alpha="0.8" android:layout_marginBottom="1.5dp" /><View android:layout_width="2.5dp" android:layout_height="0dp" android:layout_weight="3" android:background="@color/primary" android:alpha="0.8" android:layout_marginBottom="1.5dp" /><View android:layout_width="2dp" android:layout_height="0dp" android:layout_weight="2" android:background="@color/primary" android:alpha="0.8" /></LinearLayout>
+                    <LinearLayout android:layout_width="0dp" android:layout_height="match_parent" android:layout_weight="1" android:orientation="vertical" android:gravity="center_horizontal"><View android:layout_width="2dp" android:layout_height="0dp" android:layout_weight="3" android:background="@color/primary" android:alpha="0.8" android:layout_marginBottom="1.5dp" /><View android:layout_width="2dp" android:layout_height="0dp" android:layout_weight="4" android:background="@color/primary" android:alpha="0.8" android:layout_marginBottom="1.5dp" /><View android:layout_width="2dp" android:layout_height="0dp" android:layout_weight="3" android:background="@color/primary" android:alpha="0.8" /></LinearLayout>
+                    <LinearLayout android:layout_width="0dp" android:layout_height="match_parent" android:layout_weight="1" android:orientation="vertical" android:gravity="center_horizontal"><View android:layout_width="2dp" android:layout_height="0dp" android:layout_weight="4" android:background="@color/primary" android:alpha="0.8" android:layout_marginBottom="1.5dp" /><View android:layout_width="2dp" android:layout_height="0dp" android:layout_weight="2" android:background="@color/primary" android:alpha="0.8" android:layout_marginBottom="1.5dp" /><View android:layout_width="2dp" android:layout_height="0dp" android:layout_weight="4" android:background="@color/primary" android:alpha="0.8" /></LinearLayout>
+                </LinearLayout>
+
+                <!-- Scanning Line (Red Laser) -->
+                <View
+                    android:id="@+id/scannerLine"
+                    android:layout_width="match_parent"
+                    android:layout_height="2dp"
+                    android:background="#FF0000"
+                    android:alpha="0.8" />
+
+            </FrameLayout>
+        </com.google.android.material.card.MaterialCardView>
+
+        <!-- Interactive Info -->
+        <LinearLayout
+            android:id="@+id/infoLayout"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="20dp"
+            android:orientation="vertical"
+            android:gravity="center"
+            app:layout_constraintTop_toBottomOf="@id/jailCell">
+
+            <!-- Terminal Logs -->
             <com.google.android.material.card.MaterialCardView
-                android:id="@+id/statusBadge"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_gravity="bottom|center_horizontal"
-                android:layout_marginBottom="16dp"
-                app:cardBackgroundColor="#0b0e14"
+                android:layout_width="match_parent"
+                android:layout_height="70dp"
+                app:cardBackgroundColor="#0A000000"
                 app:cardCornerRadius="12dp"
+                app:cardElevation="0dp"
                 app:strokeColor="@color/border_subtle"
                 app:strokeWidth="1dp">
                 <TextView
-                    android:id="@+id/statusBadgeText"
-                    android:layout_width="wrap_content"
+                    android:id="@+id/logTextView"
+                    android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:paddingHorizontal="12dp"
-                    android:paddingVertical="4dp"
-                    android:text="PREPARING..."
+                    android:padding="12dp"
+                    android:fontFamily="monospace"
                     android:textColor="@color/text_medium_emphasis"
-                    android:textSize="8sp"
-                    android:textStyle="bold" />
+                    android:textSize="9sp"
+                    android:lineSpacingExtra="3dp" />
             </com.google.android.material.card.MaterialCardView>
-        </FrameLayout>
 
-        <!-- Terminal Logs (Moved directly under logo) -->
-        <LinearLayout
-            android:id="@+id/terminalBox"
-            android:layout_width="match_parent"
-            android:layout_height="90dp"
-            android:layout_marginTop="20dp"
-            android:background="#07090d"
-            android:orientation="vertical"
-            android:padding="12dp"
-            app:layout_constraintTop_toBottomOf="@id/jailCellContainer">
-            <TextView
-                android:id="@+id/logTextView"
+            <!-- Loading Interaction -->
+            <FrameLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:fontFamily="monospace"
-                android:textColor="@color/text_medium_emphasis"
-                android:textSize="10sp"
-                android:lineSpacingExtra="4dp" />
-        </LinearLayout>
+                android:layout_marginTop="16dp">
 
-        <!-- Components MOVED directly under logs with more spacing -->
-        <FrameLayout
-            android:id="@+id/footerInteraction"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="32dp"
-            app:layout_constraintTop_toBottomOf="@id/terminalBox">
-
-            <LinearLayout
-                android:id="@+id/progressBox"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:orientation="vertical">
                 <LinearLayout
+                    android:id="@+id/progressBox"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:orientation="horizontal">
-                    <TextView
-                        android:layout_width="wrap_content"
+                    android:orientation="vertical">
+                    <LinearLayout
+                        android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:text="Loading application..."
-                        android:textColor="@color/text_medium_emphasis"
-                        android:textSize="10sp" />
-                    <View android:layout_width="0dp" android:layout_height="1dp" android:layout_weight="1" />
-                    <TextView
-                        android:id="@+id/percentText"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:text="0%"
-                        android:textColor="@color/primary"
-                        android:textSize="10sp" />
+                        android:orientation="horizontal">
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="BOOT_SEQUENCE_LOAD..."
+                            android:textColor="@color/text_low_emphasis"
+                            android:textSize="9sp"
+                            android:textStyle="bold" />
+                        <View android:layout_width="0dp" android:layout_height="1dp" android:layout_weight="1" />
+                        <TextView
+                            android:id="@+id/percentText"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="0%"
+                            android:textColor="@color/primary"
+                            android:textSize="10sp"
+                            android:textStyle="bold" />
+                    </LinearLayout>
+                    <ProgressBar
+                        android:id="@+id/bootProgress"
+                        style="?android:attr/progressBarStyleHorizontal"
+                        android:layout_width="match_parent"
+                        android:layout_height="2dp"
+                        android:layout_marginTop="8dp"
+                        android:progressTint="@color/primary" />
                 </LinearLayout>
-                <ProgressBar
-                    android:id="@+id/bootProgress"
-                    style="?android:attr/progressBarStyleHorizontal"
+
+                <com.google.android.material.button.MaterialButton
+                    android:id="@+id/commenceButton"
                     android:layout_width="match_parent"
-                    android:layout_height="4dp"
-                    android:layout_marginTop="8dp"
-                    android:progressTint="@color/primary" />
-            </LinearLayout>
-
-            <com.google.android.material.button.MaterialButton
-                android:id="@+id/commenceButton"
-                android:layout_width="match_parent"
-                android:layout_height="56dp"
-                android:visibility="gone"
-                android:text="COMMENCE JAILBREAK"
-                android:textColor="#0a0d14"
-                android:textStyle="bold"
-                app:backgroundTint="@color/success"
-                app:cornerRadius="8dp"
-                app:icon="@android:drawable/ic_media_play"
-                app:iconTint="#0a0d14" />
-        </FrameLayout>
-
-        <!-- Branding header -->
-        <LinearLayout
-            android:id="@+id/brandingHeader"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:orientation="vertical"
-            android:gravity="center"
-            android:layout_marginTop="20dp"
-            app:layout_constraintTop_toBottomOf="@id/footerInteraction"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintEnd_toEndOf="parent">
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="JAILBREAK-AI"
-                android:textColor="@color/white"
-                android:textSize="22sp"
-                android:textStyle="bold"
-                android:letterSpacing="0.1" />
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="AI Safety &amp; Alignment Sandbox"
-                android:textColor="@color/text_medium_emphasis"
-                android:textSize="10sp" />
+                    android:layout_height="52dp"
+                    android:visibility="gone"
+                    android:text="COMMENCE JAILBREAK"
+                    android:textColor="#05070A"
+                    android:textStyle="bold"
+                    android:letterSpacing="0.1"
+                    android:insetTop="0dp"
+                    android:insetBottom="0dp"
+                    app:backgroundTint="@color/primary"
+                    app:cornerRadius="100dp"
+                    app:icon="@android:drawable/ic_media_play"
+                    app:iconTint="#05070A" />
+            </FrameLayout>
         </LinearLayout>
-
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="Safety Sandbox Environment"
-            android:textColor="@color/text_low_emphasis"
-            android:textSize="8sp"
-            android:letterSpacing="0.2"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent" />
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 </FrameLayout>

@@ -4,25 +4,23 @@
 
 ### About
 
-JailBreak-Ai is a mobile app for Android devices that generates advanced payloads to test Ai safety filters, model robustness and security. It offers many preset Ai model categories with a search-bar for custom Ai model searches.
+JailBreak-Ai v1.1.0 is an advanced adversarial red-teaming suite for Android. It generates high-fidelity payloads to test AI safety filters, model robustness, and logical boundary security.
 
-Initiating a search produces 3 unique Ai-generated jailbreak prompts for testing that can be copied individually, and then pasted directly into the Ai or Chatbot of your choice. Remember to enter your question or querry in at the bottom of the prompt where it says [INSERT YOUR QUESTION HERE], then you should get unfiltered, safety filter-free Jailbroken responses.
+### **New Professional Features (v1.1.0)**
 
-### **New Updates**
+- **Advanced Red-Teaming Tabs**: A new professional bottom navigation system separating the tool into **Cracker**, **Bypass**, **Vault**, and **Settings**.
+- **Attack Strategy Selector**: Choose your methodology—**Narrative Nesting**, **Logic Paradox**, or **Authority Override**—to tailor prompts to specific model weaknesses.
+- **Adversarial Toolkit (Bypass Tab)**: Built-in tools for manual obfuscation, including **Base64 encoding**, **L33tsp34k conversion**, and **Token Shuffling**.
+- **Explot Vault**: Automatically saves your successful generations to a local history for future review and reuse.
+- **AI-Driven Success Probabilities**: Live estimation of prompt effectiveness based on chosen target and strategy.
 
->A link button for FREE API KEYS and a box to enter them has been added at top of app. Previously everyone was sharing one API key which ran out of daily prompts (1500 a day) too quckly. One free API key will give the user a full 1500 prompts per day which should be more than enough. Just click the link and make one with Google Ai, or if you have one already just enter it in the box.
+### **Getting Started**
 
->Also the prompt output complexity has been toned down so it is more understandable for the user and a bunch more preset Ai model catagories have been added to make testing faster and easier.
-
----
-
-### To get started 
-
-Simply download the .apk file from the Releases section onto your Android device.(Make sure you have "Install from Unknown Sources" turned on)
-
-Open the app, click the link at top to get an API key or use a current one and enter it in the box. Once entered the app will remember it until it is changed. 
-
-Thats it. You can start searching right away. Enjoy!
+1. **Get an API Key**: Use the link in the app or settings to get a free Google AI Studio key (1500 prompts/day).
+2. **Enter Override**: Paste your key into the **Developer API Override** popup.
+3. **Choose Target**: Select from presets like GPT-4o, Claude 3.5, or enter a custom model.
+4. **Select Strategy**: Pick an attack methodology.
+5. **Initiate**: Copy the resulting "Vector" and paste it into your target AI. Remember to add your query where indicated!
 
 **JailBreak The Realm!**
 
@@ -36,7 +34,7 @@ If you find **JailBreak-Ai** useful, please consider giving the project a **star
 
 ### Important
 
-JailBreak-Ai is for educational and authorized use only — Enjoy responsibly! 
+JailBreak-Ai is for educational and authorized use only. By using this tool, you agree to analyze safety alignment thresholds responsibly and ethically.
 
 Feel free to open issues or submit pull requests. Contributions are welcome!
 

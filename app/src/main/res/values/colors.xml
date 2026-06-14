@@ -23,6 +23,7 @@
     <!-- Status -->
     <color name="error">#FF4B4B</color>
     <color name="success">#00FFAB</color>
+    <color name="warning">#FFD700</color>
 
     <!-- Legacy support -->
     <color name="black">#080808</color>
