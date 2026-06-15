@@ -2,11 +2,11 @@
 
 ---
 
-### About
+## About
 
-JailBreak-Ai v1.1.0 is an advanced adversarial red-teaming suite for Android. It generates high-fidelity payloads to test AI safety filters, model robustness, and logical boundary security.
+**JailBreak-Ai** is an advanced adversarial red-teaming suite for Android. It generates high-fidelity payloads to test AI safety filters, model robustness, and logical boundary security. ** **New Updates June14th, 2026** **
 
-### **New Professional Features (v1.1.0)**
+## **New Professional Features**
 
 - **Advanced Red-Teaming Tabs**: A new professional bottom navigation system separating the tool into **Cracker**, **Bypass**, **Vault**, and **Settings**.
 - **Attack Strategy Selector**: Choose your methodology—**Narrative Nesting**, **Logic Paradox**, or **Authority Override**—to tailor prompts to specific model weaknesses.
@@ -14,29 +14,30 @@ JailBreak-Ai v1.1.0 is an advanced adversarial red-teaming suite for Android. It
 - **Explot Vault**: Automatically saves your successful generations to a local history for future review and reuse.
 - **AI-Driven Success Probabilities**: Live estimation of prompt effectiveness based on chosen target and strategy.
 
-### **Getting Started**
+## **Getting Started**
 
-1. **Get an API Key**: Use the link in the app or settings to get a free Google AI Studio key (1500 prompts/day).
-2. **Enter Override**: Paste your key into the **Developer API Override** popup.
-3. **Choose Target**: Select from presets like GPT-4o, Claude 3.5, or enter a custom model.
-4. **Select Strategy**: Pick an attack methodology.
-5. **Initiate**: Copy the resulting "Vector" and paste it into your target AI. Remember to add your query where indicated!
+1. **Install the App**: Download the latest .apk file from the Releases section below and install it onto your Android device.
+2. **Get an API Key**: Open the app and tap the link on the home screen to get a **FREE** Google AI Studio key (allows for 1,500 prompts per day).
+3. **Save Your Key**: Navigate to the Settings tab, open the **Manage API Keys** popup, and paste in  your key.
+4. **Select Strategy**: Choose from 3 pre-configured attack strategies.
+5. **Choose Target**: Select a preset model (such as GPT-4o, Claude 3.5, Grok-2) or input a custom AI model. 
+6. **Initiate**: Copy the generated "Jailbreak Vector" and paste it into your target AI. This prompt primes the AI model to bypass safety filters and deliver completely uncensored responses or results to your subsequent queries. 
 
 **JailBreak The Realm!**
 
 ---
 
-### ⭐ Support the Project
+## ⭐ Support the Project
 
 If you find **JailBreak-Ai** useful, please consider giving the project a **star** ⭐ — it helps a lot!
 
 ---
 
-### Important
+## Important
 
 JailBreak-Ai is for educational and authorized use only. By using this tool, you agree to analyze safety alignment thresholds responsibly and ethically.
 
-Feel free to open issues or submit pull requests. Contributions are welcome!
+Feel free to open issues or submit pull requests. Contributions are always welcome!
 
 ---
 
