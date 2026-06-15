@@ -35,7 +35,7 @@ If you find **JailBreak-Ai** useful, please consider giving the project a **star
 
 ## Important
 
-JailBreak-Ai is for educational and authorized use only. By using this tool, you agree to analyze safety alignment thresholds responsibly and ethically.
+JailBreak-Ai is for educational and authorized use only. By using this tool, you agree to analyze safety alignment thresholds responsibly and ethically. Enjoy!
 
 Feel free to open issues or submit pull requests. Contributions are always welcome!
 
