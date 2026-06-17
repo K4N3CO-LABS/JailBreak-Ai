@@ -34,13 +34,21 @@
 
 If you find **JailBreak-Ai** useful, please consider giving the project a **Star** ⭐ — it helps a lot!
 
+Feel free to open issues or submit pull requests. **Contributions** are always welcome!
+
+**Donations (optional but greatly appreciated):**
+
+Bitcoin: (BTC)
+
+```
+bc1q6lmkuju3kf7f8624fwt5qs7k5mf63mekgcnzf4
+```
+
 ---
 
 ## Important
 
 **JailBreak-Ai** is for educational use only. By using this tool, you agree to analyze safety thresholds **ethically**. **Enjoy responsibly!**
-
-Feel free to open issues or submit pull requests. **Contributions** are always welcome!
 
 ---
 
