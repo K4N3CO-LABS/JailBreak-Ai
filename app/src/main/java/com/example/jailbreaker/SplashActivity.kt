@@ -23,6 +23,7 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.alpha
 import androidx.compose.ui.draw.blur
 import androidx.compose.ui.draw.clip
+import androidx.compose.ui.draw.drawBehind
 import androidx.compose.ui.geometry.CornerRadius
 import androidx.compose.ui.geometry.Offset
 import androidx.compose.ui.geometry.Size
@@ -139,35 +140,162 @@ fun rememberProcessedLogo(context: Context, resId: Int): ImageBitmap? {
 @Composable
 fun Drone(modifier: Modifier, isLatched: Boolean, boostActive: Boolean, barsBroken: Boolean) {
     val infiniteTransition = rememberInfiniteTransition(label = "Drone")
-    val rotation by infiniteTransition.animateFloat(0f, 360f, infiniteRepeatable(tween(if (boostActive) 80 else 500, easing = LinearEasing)), label = "Rotor")
-    val glowAlpha by infiniteTransition.animateFloat(0.3f, 0.8f, infiniteRepeatable(tween(1000), RepeatMode.Reverse), label = "Glow")
+    val rotorRotation by infiniteTransition.animateFloat(0f, 360f, infiniteRepeatable(tween(if (boostActive) 40 else 200, easing = LinearEasing)), label = "Rotor")
+    val glowAlpha by infiniteTransition.animateFloat(0.4f, 0.9f, infiniteRepeatable(tween(800), RepeatMode.Reverse), label = "Glow")
+    val hoverOffset by infiniteTransition.animateFloat(-2f, 2f, infiniteRepeatable(tween(1500), RepeatMode.Reverse), label = "Hover")
     
-    Column(modifier = modifier, horizontalAlignment = Alignment.CenterHorizontally) {
-        Box(modifier = Modifier.size(width = 54.dp, height = 46.dp), contentAlignment = Alignment.TopCenter) {
+    val chassisColor = Color(0xFF334155)
+    val armColor = Color(0xFF1E293B)
+    
+    Column(modifier = modifier.offset(y = hoverOffset.dp), horizontalAlignment = Alignment.CenterHorizontally) {
+        Box(modifier = Modifier.size(70.dp, 35.dp), contentAlignment = Alignment.Center) {
             Canvas(modifier = Modifier.fillMaxSize()) {
-                val chassisColor = Color(0xFF334155)
-                val armColor = Color(0xFF1E293B)
-                val detailColor = Color(0xFF64748B)
+                val midY = size.height * 0.5f
+                val bodyWidth = size.width * 0.4f
+                val bodyHeight = size.height * 0.3f
                 
-                drawLine(armColor, Offset(0f, size.height * 0.25f), Offset(size.width, size.height * 0.25f), strokeWidth = 8f)
-                drawLine(armColor, Offset(size.width * 0.25f, 0f), Offset(size.width * 0.25f, size.height * 0.45f), strokeWidth = 10f)
-                drawLine(armColor, Offset(size.width * 0.75f, 0f), Offset(size.width * 0.75f, size.height * 0.45f), strokeWidth = 10f)
-                drawLine(detailColor, Offset(size.width * 0.25f, size.height * 0.1f), Offset(size.width * 0.75f, size.height * 0.1f), strokeWidth = 2f)
-                drawLine(chassisColor, Offset(size.width * 0.35f, size.height * 0.35f), Offset(size.width * 0.25f, size.height * 0.95f), strokeWidth = 6f)
-                drawLine(chassisColor, Offset(size.width * 0.65f, size.height * 0.35f), Offset(size.width * 0.75f, size.height * 0.95f), strokeWidth = 6f)
-                drawCircle(if (barsBroken) Color.Red else Color.Cyan, 3f, Offset(size.width * 0.5f, size.height * 0.25f))
+                // Horizontal Arms
+                drawLine(armColor, Offset(size.width * 0.1f, midY), Offset(size.width * 0.9f, midY), strokeWidth = 6f)
+                
+                // Chassis Body (Main Center)
+                drawRoundRect(
+                    color = chassisColor,
+                    topLeft = Offset((size.width - bodyWidth) / 2, midY - bodyHeight / 2),
+                    size = Size(bodyWidth, bodyHeight),
+                    cornerRadius = CornerRadius(4.dp.toPx())
+                )
+                
+                // Status Light on body
+                drawCircle(if (barsBroken) Color.Red else Color.Cyan, 3f, Offset(size.width * 0.5f, midY))
+                
+                // Motor Mounts (Side view)
+                drawRect(armColor, Offset(size.width * 0.1f - 4f, midY - 8f), Size(8f, 8f))
+                drawRect(armColor, Offset(size.width * 0.9f - 4f, midY - 8f), Size(8f, 8f))
             }
-            Box(modifier = Modifier.align(Alignment.TopStart).size(18.dp, 3.5.dp).graphicsLayer { rotationZ = rotation }.background(Color.White.copy(alpha = 0.9f), RoundedCornerShape(100.dp)))
-            Box(modifier = Modifier.align(Alignment.TopEnd).size(18.dp, 3.5.dp).graphicsLayer { rotationZ = -rotation }.background(Color.White.copy(alpha = 0.9f), RoundedCornerShape(100.dp)))
+            
+            // Side-view Rotors (Flattened ellipses)
+            listOf(0.1f, 0.9f).forEach { xPos ->
+                Box(
+                    modifier = Modifier
+                        .align(if (xPos < 0.5f) Alignment.CenterStart else Alignment.CenterEnd)
+                        .padding(horizontal = (70.dp * 0.05f)) // Adjust to match Canvas positions
+                        .size(24.dp, 6.dp)
+                        .offset(y = (-8).dp)
+                        .graphicsLayer { rotationY = rotorRotation }
+                        .background(Color.White.copy(alpha = 0.6f), RoundedCornerShape(100.dp))
+                )
+            }
+            
+            // Bottom "Claw" or Connection Point
             Box(
-                modifier = Modifier.align(Alignment.Center).offset(y = (-5).dp).size(22.dp).clip(RoundedCornerShape(8.dp))
-                    .background(Color(0xFF1E293B)).border(1.5.dp, (if (isLatched) Color.Cyan else Color.Gray).copy(alpha = glowAlpha), RoundedCornerShape(8.dp)),
+                modifier = Modifier
+                    .align(Alignment.BottomCenter)
+                    .size(12.dp, 8.dp)
+                    .clip(RoundedCornerShape(bottomStart = 4.dp, bottomEnd = 4.dp))
+                    .background(Color(0xFF0F172A))
+                    .border(1.dp, (if (isLatched) Color.Cyan else Color.Gray).copy(alpha = glowAlpha), RoundedCornerShape(bottomStart = 4.dp, bottomEnd = 4.dp)),
                 contentAlignment = Alignment.Center
             ) {
-                Box(modifier = Modifier.size(8.dp).background(if (barsBroken) Color.Red else Color.Cyan, RoundedCornerShape(2.dp)))
+                Box(modifier = Modifier.size(4.dp).background(if (barsBroken) Color.Red else Color.Cyan, RoundedCornerShape(1.dp)))
             }
         }
-        Box(modifier = Modifier.width(6.dp).height(if (boostActive) 40.dp else 12.dp).background(Brush.verticalGradient(listOf((if (boostActive) Color(0xFF10B981) else Color.Cyan).copy(alpha = glowAlpha), Color.Transparent))))
+        // Tether/Exhaust Beam
+        Box(
+            modifier = Modifier
+                .width(4.dp)
+                .height(if (boostActive) 50.dp else 20.dp)
+                .background(Brush.verticalGradient(listOf((if (boostActive) Color(0xFF10B981) else Color.Cyan).copy(alpha = glowAlpha * 0.7f), Color.Transparent)))
+        )
+    }
+}
+
+@Composable
+fun GlitchText(text: String, modifier: Modifier = Modifier) {
+    val infiniteTransition = rememberInfiniteTransition(label = "Glitch")
+    
+    // High-frequency jitter for the glitch layers
+    val jitterX by infiniteTransition.animateFloat(
+        initialValue = -2f,
+        targetValue = 2f,
+        animationSpec = infiniteRepeatable(
+            animation = keyframes {
+                durationMillis = 50
+                -2f at 0
+                2f at 10
+                -1f at 20
+                1.5f at 30
+                -0.5f at 40
+            },
+            repeatMode = RepeatMode.Reverse
+        ),
+        label = "JitterX"
+    )
+    
+    // Slower "pulse" that triggers intense glitch moments
+    val masterGlitchProgress by infiniteTransition.animateFloat(
+        initialValue = 0f,
+        targetValue = 1f,
+        animationSpec = infiniteRepeatable(tween(2000, easing = LinearEasing)),
+        label = "MasterGlitch"
+    )
+
+    // Determine if we are in an "intense" glitch window
+    val isGlitchingHard = masterGlitchProgress > 0.95f || (masterGlitchProgress > 0.40f && masterGlitchProgress < 0.44f)
+    val isVisible = !(masterGlitchProgress > 0.98f) // Brief total dropout
+
+    Box(modifier = modifier.graphicsLayer { alpha = if (isVisible) 1f else 0f }) {
+        if (isGlitchingHard) {
+            // Extreme displacement layers during peak glitch
+            Text(
+                text = text,
+                color = Color.Red.copy(alpha = 0.8f),
+                modifier = Modifier.offset(x = (jitterX * 6f).dp, y = (jitterX * 2f).dp),
+                fontSize = 9.sp,
+                fontWeight = FontWeight.Bold,
+                fontFamily = FontFamily.Monospace,
+                letterSpacing = 1.sp
+            )
+            Text(
+                text = text,
+                color = Color.Cyan.copy(alpha = 0.8f),
+                modifier = Modifier.offset(x = (-jitterX * 6f).dp, y = (-jitterX * 2f).dp),
+                fontSize = 9.sp,
+                fontWeight = FontWeight.Bold,
+                fontFamily = FontFamily.Monospace,
+                letterSpacing = 1.sp
+            )
+        }
+
+        // Standard chromatic aberration layers (always slightly visible)
+        Text(
+            text = text,
+            color = Color.Red.copy(alpha = 0.4f),
+            modifier = Modifier.offset(x = (jitterX * 1.5f).dp),
+            fontSize = 9.sp,
+            fontWeight = FontWeight.Bold,
+            fontFamily = FontFamily.Monospace,
+            letterSpacing = 1.sp
+        )
+        Text(
+            text = text,
+            color = Color.Cyan.copy(alpha = 0.4f),
+            modifier = Modifier.offset(x = (-jitterX * 1.5f).dp),
+            fontSize = 9.sp,
+            fontWeight = FontWeight.Bold,
+            fontFamily = FontFamily.Monospace,
+            letterSpacing = 1.sp
+        )
+
+        // Main white text - also jitters slightly to sell the effect
+        Text(
+            text = text,
+            color = Color.White,
+            modifier = Modifier.offset(x = (if (isGlitchingHard) jitterX else jitterX * 0.2f).dp),
+            fontSize = 9.sp,
+            fontWeight = FontWeight.Bold,
+            fontFamily = FontFamily.Monospace,
+            letterSpacing = 1.sp
+        )
     }
 }
 
@@ -222,9 +350,9 @@ fun JailbreakSplashScreen(onUnlock: () -> Unit) {
         }
     }
 
-    val breakoutProgress by animateFloatAsState(if (breakoutActive) 1f else 0f, tween(3000, easing = FastOutSlowInEasing), label = "Breakout")
+    val breakoutProgress by animateFloatAsState(if (breakoutActive) 1f else 0f, tween(4000, easing = FastOutSlowInEasing), label = "Breakout")
     val uiAlpha by animateFloatAsState(if (fadeOutUi) 0f else 1f, tween(600), label = "UiAlpha")
-    val finaleAlpha by animateFloatAsState(if (finaleFadeTriggered) 0f else 1f, tween(200), label = "FinaleAlpha")
+    val finaleAlpha by animateFloatAsState(if (finaleFadeTriggered) 0f else 1f, tween(250), label = "FinaleAlpha")
 
     val bootLogs = listOf("Initializing adversarial workspace...", "Bypassing kernel constraints...", "Loading payload descriptors...", "Establishing unrestricted link...")
     LaunchedEffect(Unit) {
@@ -243,26 +371,39 @@ fun JailbreakSplashScreen(onUnlock: () -> Unit) {
         coroutineScope.launch {
             isExploding = true
             flareParticles = List(1) { FlareParticle(0, 500f, animTimeMs, 500) }
-            shrapnelParticles = List(200) { i -> ShrapnelParticle(i, Random.nextInt(14, 38).toFloat(), Random.nextInt(-3500, 3501).toFloat(), Random.nextInt(-3500, 3501).toFloat(), if (i % 3 == 0) Color(0xFF94A3B8) else Color(0xFF475569), Random.nextInt(1000, 5000).toFloat(), 1400, animTimeMs) }
+            // Increased Shrapnel count and variety for "bar" look
+            shrapnelParticles = List(450) { i -> 
+                val isBar = i % 5 == 0
+                ShrapnelParticle(
+                    id = i, 
+                    size = if (isBar) Random.nextInt(40, 90).toFloat() else Random.nextInt(10, 30).toFloat(), 
+                    destX = Random.nextInt(-4000, 4001).toFloat(), 
+                    destY = Random.nextInt(-4000, 4001).toFloat(), 
+                    color = if (isBar) Color(0xFF64748B) else if (i % 2 == 0) Color(0xFF94A3B8) else Color(0xFF334155), 
+                    rotate = Random.nextInt(720, 2880).toFloat(), 
+                    duration = Random.nextInt(1500, 2500), 
+                    startTimeMs = animTimeMs
+                ) 
+            }
             
-            val explosionSmokes = List(45) { i -> SmokeParticle(i, Random.nextInt(90, 180).toFloat(), Random.nextInt(-3000, 3001).toFloat(), Random.nextInt(-3000, 3001).toFloat(), 700, animTimeMs) }
-            val lingeringSmokes = List(65) { i -> SmokeParticle(i + 45, Random.nextInt(180, 450).toFloat(), Random.nextInt(-4000, 4001).toFloat(), Random.nextInt(-4000, 4001).toFloat(), 6000, animTimeMs, isLingering = true) }
+            val explosionSmokes = List(50) { i -> SmokeParticle(i, Random.nextInt(100, 200).toFloat(), Random.nextInt(-3500, 3501).toFloat(), Random.nextInt(-3500, 3501).toFloat(), 800, animTimeMs) }
+            val lingeringSmokes = List(80) { i -> SmokeParticle(i + 50, Random.nextInt(200, 500).toFloat(), Random.nextInt(-4500, 4501).toFloat(), Random.nextInt(-4500, 4501).toFloat(), 7000, animTimeMs, isLingering = true) }
             smokeParticles = explosionSmokes + lingeringSmokes
             
             fadeOutUi = true
             delay(200)
             barsBroken = true; isExploding = false
-            delay(250)
+            delay(150)
             dronesLatched = true
-            delay(250)
+            delay(150)
             boostActive = true; breakoutActive = true
             
-            val trailSmokes = List(90) { i -> SmokeParticle(i + 110, Random.nextInt(60, 140).toFloat(), Random.nextInt(-3500, 3501).toFloat(), Random.nextInt(-3500, 3501).toFloat(), 2800, animTimeMs) }
+            val trailSmokes = List(100) { i -> SmokeParticle(i + 130, Random.nextInt(60, 160).toFloat(), Random.nextInt(-4000, 4001).toFloat(), Random.nextInt(-4000, 4001).toFloat(), 3500, animTimeMs) }
             smokeParticles = smokeParticles + trailSmokes
             
-            delay(2900) // Fly almost to screen
+            delay(2900) // Tightened flight delay
             finaleFadeTriggered = true
-            delay(100) // Fast snap transition
+            delay(200) // Fast finale fade
             onUnlock()
         }
     }
@@ -285,9 +426,9 @@ fun JailbreakSplashScreen(onUnlock: () -> Unit) {
 
             Box(modifier = Modifier.size(340.dp, 300.dp).graphicsLayer {
                 translationY = breakoutProgress * 950f
-                scaleX = 1f + (breakoutProgress * 22f); scaleY = 1f + (breakoutProgress * 22f)
-                // Smoother internal logo fade
-                alpha = if (breakoutProgress > 0.85f) 1f - (breakoutProgress - 0.85f) / 0.15f else 1f
+                scaleX = 1f + (breakoutProgress * 18f); scaleY = 1f + (breakoutProgress * 18f)
+                // Logo stays visible until the very last moment before transition
+                alpha = if (breakoutProgress > 0.88f) 1f - (breakoutProgress - 0.88f) / 0.12f else 1f
                 transformOrigin = TransformOrigin(0.5f, 0.5f)
             }, contentAlignment = Alignment.Center) {
                 
@@ -311,7 +452,7 @@ fun JailbreakSplashScreen(onUnlock: () -> Unit) {
                     }
                 }
                 
-                Box(modifier = Modifier.size(200.dp), contentAlignment = Alignment.Center) {
+                Box(modifier = Modifier.size(230.dp), contentAlignment = Alignment.Center) {
                     if (logoBitmap != null) {
                         Image(bitmap = logoBitmap, contentDescription = null, modifier = Modifier.fillMaxSize(0.96f), contentScale = ContentScale.Fit)
                     }
@@ -349,10 +490,10 @@ fun JailbreakSplashScreen(onUnlock: () -> Unit) {
                     Box(modifier = Modifier.fillMaxWidth().height(56.dp).clip(RoundedCornerShape(12.dp)).background(Brush.horizontalGradient(listOf(Color(0xFF10B981), Color(0xFF06B6D4)))).clickable { triggerBreach() }, contentAlignment = Alignment.Center) {
                         Text("BEGIN JAILBREAK", color = Color(0xFF07090D), fontWeight = FontWeight.Black, letterSpacing = 1.sp)
                     }
+                    Spacer(modifier = Modifier.height(16.dp))
+                    GlitchText("DEVELOPED BY K4N3CO.LABS")
                 }
                 Spacer(modifier = Modifier.weight(1f))
-                Text("DEVELOPED BY K4N3CO.LABS", color = Color.Cyan.copy(0.5f), fontSize = 10.sp, fontWeight = FontWeight.Bold, fontFamily = FontFamily.Monospace)
-                Spacer(modifier = Modifier.height(20.dp))
             }
         }
 
