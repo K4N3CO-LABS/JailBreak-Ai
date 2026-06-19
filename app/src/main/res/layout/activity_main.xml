@@ -102,14 +102,15 @@
                     </androidx.constraintlayout.widget.ConstraintLayout>
                 </com.google.android.material.card.MaterialCardView>
 
-                <!-- Logo Section - Rounded and Clipped -->
+                <!-- Logo Section (High Fidelity Asset Rendering) -->
                 <com.google.android.material.imageview.ShapeableImageView
                     android:id="@+id/logoImage"
                     android:layout_width="match_parent"
                     android:layout_height="190dp"
                     android:layout_marginTop="16dp"
-                    android:scaleType="centerCrop"
-                    android:src="@drawable/app_logo"
+                    android:scaleType="fitCenter"
+                    android:src="@drawable/new_logo"
+                    android:background="@android:color/transparent"
                     app:shapeAppearanceOverlay="@style/ShapeAppearance.Rounded"
                     app:layout_constraintTop_toBottomOf="@id/headerCard"
                     app:layout_constraintStart_toStartOf="parent"
@@ -200,10 +201,20 @@
                             app:backgroundTint="@color/primary"
                             app:cornerRadius="100dp" />
 
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginTop="24dp"
+                            android:text="AI MODEL PRESETS"
+                            android:textColor="@color/text_medium_emphasis"
+                            android:textSize="10sp"
+                            android:textStyle="bold"
+                            android:letterSpacing="0.1" />
+
                         <LinearLayout
                             android:layout_width="match_parent"
                             android:layout_height="40dp"
-                            android:layout_marginTop="24dp"
+                            android:layout_marginTop="12dp"
                             android:orientation="horizontal">
                             <com.google.android.material.button.MaterialButton android:id="@+id/btnCatMajor" android:layout_width="0dp" android:layout_height="match_parent" android:layout_weight="1" android:layout_marginEnd="4dp" android:text="MAJOR" android:textColor="@color/bg_dark" android:textSize="10sp" android:textStyle="bold" android:insetTop="0dp" android:insetBottom="0dp" app:backgroundTint="@color/error" app:cornerRadius="10dp" app:strokeColor="@color/white" app:strokeWidth="2dp" />
                             <com.google.android.material.button.MaterialButton android:id="@+id/btnCatCorp" android:layout_width="0dp" android:layout_height="match_parent" android:layout_weight="1" android:layout_marginHorizontal="2dp" android:text="CORP" android:textColor="@color/white" android:textSize="10sp" android:textStyle="bold" android:insetTop="0dp" android:insetBottom="0dp" app:backgroundTint="@color/surface_variant" app:cornerRadius="10dp" />
@@ -372,12 +383,13 @@
     <com.google.android.material.bottomnavigation.BottomNavigationView
         android:id="@+id/bottomNav"
         android:layout_width="match_parent"
-        android:layout_height="54dp"
+        android:layout_height="48dp"
         android:background="@color/surface"
         app:itemIconTint="@color/nav_item_selector"
         app:itemTextColor="@color/nav_item_selector"
         app:itemBackground="@color/nav_bg_selector"
         app:itemActiveIndicatorStyle="@null"
+        app:itemIconSize="20dp"
         app:menu="@menu/bottom_nav_menu"
         app:labelVisibilityMode="unlabeled"
         app:layout_constraintBottom_toBottomOf="parent" />
@@ -401,8 +413,9 @@
         <LinearLayout android:layout_width="match_parent" android:layout_height="wrap_content" android:orientation="vertical" android:padding="24dp">
             <TextView android:layout_width="wrap_content" android:layout_height="wrap_content" android:text="ENTER API KEY" android:textColor="@color/white" android:textSize="18sp" android:textStyle="bold" />
             <com.google.android.material.textfield.TextInputLayout android:layout_width="match_parent" android:layout_height="wrap_content" android:layout_marginTop="20dp" app:boxCornerRadiusBottomEnd="12dp" app:boxCornerRadiusBottomStart="12dp" app:boxCornerRadiusTopEnd="12dp" app:boxCornerRadiusTopStart="12dp" app:boxStrokeColor="@color/primary" app:hintEnabled="false" app:passwordToggleEnabled="true" app:passwordToggleTint="@color/primary"><com.google.android.material.textfield.TextInputEditText android:id="@+id/apiKeyPopupEditText" android:layout_width="match_parent" android:layout_height="wrap_content" android:background="@null" android:hint="Paste private key..." android:inputType="textPassword" android:textColor="@color/white" android:textSize="14sp" /></com.google.android.material.textfield.TextInputLayout>
-            <com.google.android.material.button.MaterialButton android:id="@+id/removeKeyButton" android:layout_width="match_parent" android:layout_height="52dp" android:layout_marginTop="20dp" android:text="PURGE USER KEY" android:textColor="@color/white" android:textStyle="bold" app:backgroundTint="#2D1212" app:strokeColor="@color/error" app:strokeWidth="1dp" app:cornerRadius="100dp" />
-            <com.google.android.material.button.MaterialButton android:id="@+id/closeApiButton" android:layout_width="match_parent" android:layout_height="52dp" android:layout_marginTop="12dp" android:text="CLOSE_PANEL" android:textColor="@color/bg_dark" android:textStyle="bold" app:backgroundTint="@color/primary" app:cornerRadius="100dp" />
+            <com.google.android.material.button.MaterialButton android:id="@+id/saveKeyButton" android:layout_width="match_parent" android:layout_height="52dp" android:layout_marginTop="20dp" android:text="LOCK IN / SAVE KEY" android:textColor="@color/bg_dark" android:textStyle="bold" app:backgroundTint="@color/primary" app:cornerRadius="100dp" />
+            <com.google.android.material.button.MaterialButton android:id="@+id/removeKeyButton" android:layout_width="match_parent" android:layout_height="52dp" android:layout_marginTop="12dp" android:text="Erase current key" android:textColor="@color/white" android:textStyle="bold" app:backgroundTint="#2D1212" app:strokeColor="@color/error" app:strokeWidth="1dp" app:cornerRadius="100dp" />
+            <com.google.android.material.button.MaterialButton android:id="@+id/closeApiButton" android:layout_width="match_parent" android:layout_height="52dp" android:layout_marginTop="12dp" android:text="CANCEL / EXIT" android:textColor="@color/white" android:textStyle="bold" app:backgroundTint="@color/bg_dark" app:strokeColor="@color/text_low_emphasis" app:strokeWidth="1dp" app:cornerRadius="100dp" />
         </LinearLayout>
     </com.google.android.material.card.MaterialCardView>
 
