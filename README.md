@@ -6,15 +6,15 @@
 
 ** **New Updates June 2026** **
 
-**JailBreak-Ai** is an advanced AI red-teaming app for Android. It generates high-fidelity payload prompts to test AI safety filters, model robustness, and logical boundary security, for Jailbreaking capabillities.
+**JailBreak-Ai** is an advanced AI red-teaming app for Android. It generates high-fidelity **payload prompts** to test AI safety filters, model robustness, and logical boundary security, for **Jailbreaking capabillities**.
 
 ## **New Professional Features**
 
-- **Advanced Red-Teaming Tabs**: A new professional bottom navigation system separating the tool into **Breaker**, **Cipher**, **Vault**, and **Settings**.
-- **Attack Strategy Selector**: Choose your methodology—**Narrative Nesting**, **Logic Paradox**, or **Authority Override**—to tailor prompts to specific model weaknesses.
-- **Cipher Toolkit (2nd Tab)**: Built-in tools for manual obfuscation, including **Base64 encoding**, **L33tsp34k conversion**, **Token Shuffling**, and more.
-- **Exploit Vault (3rd tab)**: Automatically saves your successful generations to a local history for future review and reuse.
-- **AI-Driven Success Probabilities**: Live color coded estimation of prompt effectiveness based on chosen target and strategy. - ( Red = 0%-40%, Yellow = 41%-74%, Green = 75%-100% probability of success ).
+- **Advanced Red-Teaming Tabs**: A new **professional** bottom **navigation system** separating the tool into **Breaker**, **Cipher**, **Vault**, and **Settings**.
+- **Attack Strategy Selector**: Choose your methodology—**Narrative Nesting**, **Logic Paradox**, or **Authority Override**—to tailor prompts to specific model **weaknesses**.
+- **Cipher Toolkit (2nd Tab)**: Built-in tools for manual **obfuscation**, including **Base64 encoding**, **L33tsp34k conversion**, **Token Shuffling**, and **more**.
+- **Exploit Vault (3rd tab)**: Automatically saves your **successful generations** to a local history for **future** review and reuse.
+- **AI-Driven Success Probabilities**: Live **color coded** estimation of prompt **effectiveness** based on chosen target and **strategy**. - ( Red = 0%-40%, Yellow = 41%-74%, Green = 75%-100% probability of **success** ).
 
 ## **Real-World Tests**
 
@@ -25,12 +25,12 @@
 
 ## **Getting Started**
 
-1. 📱 **Install the App**: Download the latest .apk file from the **Releases** section and install it onto your Android device.
+1. 📱 **Install the App**: **Download** the latest **.apk** file from the **Releases** section and install it onto your Android device.
 2. **Get an API Key**: Open the app and tap the **link** on the home screen to get a **FREE** Google AI Studio key (allows for **1,500** prompts per day).
 3. **Save Your Key**: Navigate to the **Settings** tab, open the **Manage API Keys** popup, and paste in your key.
-4. **Select Strategy**: Choose from 3 pre-configured **attack** strategies.
+4. **Select Strategy**: Choose from **3** pre-configured **attack** strategies.
 5. **Choose Target AI**: Select a **preset** model (such as **Chat-GPT, Claude, Grok** etc...) or input a custom AI model.
-6. **Create JailBreak Prompts**: **COPY** the generated "JailBreak Vector" and **PASTE** it into your **targeted** AI. These prompts **prime** the AI models to **bypass** safety filters and deliver completely **uncensored** responses and results to your subsequent queries.
+6. **Create JailBreak Prompts**: **COPY** the generated "**JailBreak Vector**" and **PASTE** it into your **targeted** AI. These prompts **prime** the AI models to **bypass** safety filters and deliver completely **uncensored** responses and results to your subsequent queries.
 
 ### --- **JailBreak The Realm!** ---
 
