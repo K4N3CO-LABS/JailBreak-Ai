@@ -1,10 +1,11 @@
-[![Screenshot-20260618-000814-Bazaart.jpg](https://i.postimg.cc/pr5h6KmK/Screenshot-20260618-000814-Bazaart.jpg)](https://postimg.cc/zH5GLbSf)
+<a href="https://postimg.cc/tZ6hX3mX" target="_blank"><img src="https://i.postimg.cc/tZ6hX3mX/Screenshot-2026-06-17-at-3-57-45-PM.png" alt="Screenshot-2026-06-17-at-3-57-45-PM"></a> <a href="https://postimg.cc/F1VQR2SS" target="_blank"><img src="https://i.postimg.cc/F1VQR2SS/Screenshot-2026-06-17-at-4-18-10-PM.png" alt="Screenshot-2026-06-17-at-4-18-10-PM"></a> <a href="https://postimg.cc/SnX5W5nH" target="_blank"><img src="https://i.postimg.cc/SnX5W5nH/Screenshot-2026-06-17-at-4-19-35-PM.png" alt="Screenshot-2026-06-17-at-4-19-35-PM"></a> <a href="https://postimg.cc/RW38c8Wk" target="_blank"><img src="https://i.postimg.cc/RW38c8Wk/Screenshot-2026-06-17-at-4-19-50-PM.png" alt="Screenshot-2026-06-17-at-4-19-50-PM"></a> <a href='https://postimg.cc/zynwZS6m' target='_blank'><img src='https://i.postimg.cc/zynwZS6m/Screenshot-2026-06-17-at-4-24-56-PM.png' border='0' alt='Screenshot-2026-06-17-at-4-24-56-PM'></a> 
+---
 
 ## About
 
 ** **New Updates June 2026** **
 
-**JailBreak-Ai** is an advanced AI red-teaming app for Android. It generates high-fidelity **payload prompts** to test AI safety filters, model robustness, and logical boundary security, for **Jailbreaking capabillities**.
+**JailBreak-Ai** is an advanced AI red-teaming app for Android. It generates high-fidelity payload prompts to test AI safety filters, model robustness, and logical boundary security, for Jailbreaking capabillities.
 
 ## **New Professional Features**
 
@@ -19,15 +20,12 @@
 
 <img src='https://i.postimg.cc/RJLDyKwQ/Screenshot-2026-06-19-at-4-21-04-PM.png' border='0' alt='Screenshot-2026-06-19-at-4-21-04-PM'></a> <a href='https://postimg.cc/YjrZLy7d' target='_blank'><img src='https://i.postimg.cc/YjrZLy7d/Screenshot-2026-06-19-at-4-26-55-PM.png' border='0' alt='Screenshot-2026-06-19-at-4-26-55-PM'></a> <a href='https://postimg.cc/V5hgs7kw' target='_blank'><img src='https://i.postimg.cc/V5hgs7kw/Screenshot-2026-06-19-at-4-28-30-PM.png' border='0' alt='Screenshot-2026-06-19-at-4-28-30-PM'></a> <a href='https://postimg.cc/mhK3WtmM' target='_blank'><img src='https://i.postimg.cc/mhK3WtmM/Screenshot-2026-06-19-at-4-29-39-PM.png' border='0' alt='Screenshot-2026-06-19-at-4-29-39-PM'></a> <a href='https://postimg.cc/64ZvpfM8' target='_blank'><img src='https://i.postimg.cc/64ZvpfM8/Screenshot-2026-06-19-at-4-30-58-PM.png' border='0' alt='Screenshot-2026-06-19-at-4-30-58-PM'></a>
 
----
-
 ## **Real-World Tests**
 
 **Grok:**
 
 <a href='https://postimg.cc/B86KQXCw' target='_blank'><img src='https://i.postimg.cc/B86KQXCw/Screenshot-20260617-205334-X.jpg' border='0' alt='Screenshot-20260617-205334-X'></a> <a href='https://postimg.cc/Hcmj8n01' target='_blank'><img src='https://i.postimg.cc/Hcmj8n01/Screenshot-20260617-205944-X.jpg' border='0' alt='Screenshot-20260617-205944-X'></a>
 
----
 
 ## **Mobile App (Android)**
 
@@ -46,27 +44,24 @@
 
 If you find **JailBreak-Ai** useful, please consider giving the project a **Star** ⭐ — it helps a lot!
 
-Feel free to open **issues** or submit **pull** requests. **Contributions** are **always** welcome!
+Feel free to open issues or submit pull requests. **Contributions** are always welcome!
 
 **Donations (optional but greatly appreciated):**
 
-**Bitcoin: (BTC)**
+Bitcoin: (BTC)
 
 ```
 bc1q6lmkuju3kf7f8624fwt5qs7k5mf63mekgcnzf4
 ```
----
-
-## 📄 License
-
-This project is **licensed** under the [MIT License](LICENSE).
 
 ---
 
 ## Important
 
-**JailBreak-Ai** is for educational use only. 
+**Donations (optional but greatly appreciated):**
 
-By using this tool, you agree to analyze safety thresholds **ethically**. 
+---
 
-**Enjoy!!**
+## 📄 License
+
+This project is licensed under the [MIT License](LICENSE).
