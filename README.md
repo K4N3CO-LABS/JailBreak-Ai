@@ -1,6 +1,16 @@
 [![Screenshot-20260618-000814-Bazaart.jpg](https://i.postimg.cc/pr5h6KmK/Screenshot-20260618-000814-Bazaart.jpg)](https://postimg.cc/zH5GLbSf)
-## **About**
+</strong> </p>
+  <p align="center">
+    <img src="https://img.shields.io/badge/Kotlin-2.4.0-blue.svg" alt="Python 3.8+">
+    <img src="https://img.shields.io/badge/License-MIT-darkblue.svg" alt="License: MIT">
+    <img src="https://img.shields.io/badge/Android-apk-neongreen.svg" alt="Claude Code">
+    <img src="https://img.shields.io/badge/npm-11.17.0-orange.svg" alt="6 Skills">
+    <img src="https://img.shields.io/badge/Ai  Presets-28-gold.svg" alt="28 Ai models">
+  <p align="center">
+    <img src="https://img.shields.io/badge/Jailbreak-The Realm-darkred.svg" alt="Zero Dependencies">
+  </p>
 
+  ## About
 ** **New Updates June 2026** **
 
 **JailBreak-Ai** is an **advanced AI red-teaming app** for **Android**. It generates **high-fidelity payload prompts** to test **AI safety filters**, **model robustness**, and **logical boundary security**, for **Jailbreaking capabillities**.
@@ -38,7 +48,10 @@
 5. **Choose Target AI**: Select a **preset model** (such as **Chat-GPT, Claude, Grok** etc...) or input a **custom AI model**.
 6. **Create JailBreak Prompts**: **COPY** a generated "**JailBreak Vector**" and **PASTE** it into your **targeted AI**. These prompts **prime** the **targeted AI models** to **bypass safety filters** and deliver completely **uncensored responses** and **results** to your **subsequent queries.**
 
-### --- **JailBreak The Realm!** ---
+ 
+ <p align="center">
+    <img src="https://img.shields.io/badge/Jailbreak-The Realm-darkred.svg" alt="Zero Dependencies">
+  </p>
 
 ---
 
