@@ -1,11 +1,9 @@
 [![Screenshot-20260618-000814-Bazaart.jpg](https://i.postimg.cc/pr5h6KmK/Screenshot-20260618-000814-Bazaart.jpg)](https://postimg.cc/zH5GLbSf)
 </strong> </p>
   <p align="center">
-    <img src="https://img.shields.io/badge/Kotlin-2.4.0-blue.svg" alt="Python 3.8+">
+    <img src="https://img.shields.io/badge/Kotlin-2.4-blue.svg" alt="kotlin 2.4">
     <img src="https://img.shields.io/badge/License-MIT-darkblue.svg" alt="License: MIT">
-    <img src="https://img.shields.io/badge/Android-apk-neongreen.svg" alt="Claude Code">
-    <img src="https://img.shields.io/badge/npm-11.17.0-orange.svg" alt="6 Skills">
-    <img src="https://img.shields.io/badge/Ai  Presets-28-gold.svg" alt="28 Ai models">
+    <img src="https://img.shields.io/badge/Android-SDK-green.svg" alt="Claude Code">
   <p align="center">
     <img src="https://img.shields.io/badge/Jailbreak-The Realm-darkred.svg" alt="Zero Dependencies">
   </p>
