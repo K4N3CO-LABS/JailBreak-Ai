@@ -1,4 +1,4 @@
-[![Screenshot-20260618-000814-Bazaart.jpg](https://i.postimg.cc/pr5h6KmK/Screenshot-20260618-000814-Bazaart.jpg)](https://postimg.cc/zH5GLbSf)
+8[![Screenshot-20260618-000814-Bazaart.jpg](https://i.postimg.cc/pr5h6KmK/Screenshot-20260618-000814-Bazaart.jpg)](https://postimg.cc/zH5GLbSf)
 </strong> </p>
   <p align="center">
     <img src="https://img.shields.io/badge/Kotlin-2.4-blue.svg" alt="kotlin 2.4">
@@ -71,12 +71,10 @@ bc1q6lmkuju3kf7f8624fwt5qs7k5mf63mekgcnzf4
 
 ## **Important**
 
-**Jailbreak-Ai** is for **educational and authorized use**.
-
-**Only** use on **networks** and **systems** you have **permission** to **test on**. **Enjoy responsibly**!
+**Jailbreak-Ai** is for **educational** and **authorized** use **only**. **Enjoy responsibly**!
 
 ---
 
 ## 📄 **License**
 
-This project is **licensed** under the [MIT License](LICENSE).
+This project is **licensed** to **K4N3CO.LABS** under the [MIT License](LICENSE).
