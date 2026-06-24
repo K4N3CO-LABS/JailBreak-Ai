@@ -1,5 +1,4 @@
-8[![Screenshot-20260618-000814-Bazaart.jpg](https://i.postimg.cc/pr5h6KmK/Screenshot-20260618-000814-Bazaart.jpg)](https://postimg.cc/zH5GLbSf)
-</strong> </p>
+[![Screenshot-20260618-000814-Bazaart.jpg](https://i.postimg.cc/pr5h6KmK/Screenshot-20260618-000814-Bazaart.jpg)](https://postimg.cc/zH5GLbSf)
   <p align="center">
     <img src="https://img.shields.io/badge/Kotlin-2.4-blue.svg" alt="kotlin 2.4">
     <img src="https://img.shields.io/badge/License-MIT-darkblue.svg" alt="License: MIT">
