@@ -7,7 +7,7 @@
     <img src="https://img.shields.io/badge/Jailbreak-The Realm-darkred.svg" alt="Zero Dependencies">
   </p>
 
-  ## About
+## About
 ** **New Updates June 2026** **
 
 **JailBreak-Ai** is an **advanced AI red-teaming app** for **Android**. It generates **high-fidelity payload prompts** to test **AI safety filters**, **model robustness**, and **logical boundary security**, for **Jailbreaking capabillities**.
@@ -24,7 +24,7 @@
 
 ## **Screenshots**
 
-<img src='https://i.postimg.cc/RJLDyKwQ/Screenshot-2026-06-19-at-4-21-04-PM.png' border='0' alt='Screenshot-2026-06-19-at-4-21-04-PM'></a> <a href='https://postimg.cc/YjrZLy7d' target='_blank'><img src='https://i.postimg.cc/YjrZLy7d/Screenshot-2026-06-19-at-4-26-55-PM.png' border='0' alt='Screenshot-2026-06-19-at-4-26-55-PM'></a> <a href='https://postimg.cc/V5hgs7kw' target='_blank'><img src='https://i.postimg.cc/V5hgs7kw/Screenshot-2026-06-19-at-4-28-30-PM.png' border='0' alt='Screenshot-2026-06-19-at-4-28-30-PM'></a> <a href='https://postimg.cc/mhK3WtmM' target='_blank'><img src='https://i.postimg.cc/mhK3WtmM/Screenshot-2026-06-19-at-4-29-39-PM.png' border='0' alt='Screenshot-2026-06-19-at-4-29-39-PM'></a> <a href='https://postimg.cc/64ZvpfM8' target='_blank'><img src='https://i.postimg.cc/64ZvpfM8/Screenshot-2026-06-19-at-4-30-58-PM.png' border='0' alt='Screenshot-2026-06-19-at-4-30-58-PM'></a>
+<a href="https://postimg.cc/RJLDyKwQ" target="_blank"><img src="https://i.postimg.cc/RJLDyKwQ/Screenshot-2026-06-19-at-4-21-04-PM.png" alt="Screenshot-2026-06-19-at-4-21-04-PM"></a> <a href='https://postimg.cc/YjrZLy7d' target='_blank'><img src='https://i.postimg.cc/YjrZLy7d/Screenshot-2026-06-19-at-4-26-55-PM.png' border='0' alt='Screenshot-2026-06-19-at-4-26-55-PM'></a> <a href='https://postimg.cc/V5hgs7kw' target='_blank'><img src='https://i.postimg.cc/V5hgs7kw/Screenshot-2026-06-19-at-4-28-30-PM.png' border='0' alt='Screenshot-2026-06-19-at-4-28-30-PM'></a> <a href='https://postimg.cc/mhK3WtmM' target='_blank'><img src='https://i.postimg.cc/mhK3WtmM/Screenshot-2026-06-19-at-4-29-39-PM.png' border='0' alt='Screenshot-2026-06-19-at-4-29-39-PM'></a> <a href='https://postimg.cc/64ZvpfM8' target='_blank'><img src='https://i.postimg.cc/64ZvpfM8/Screenshot-2026-06-19-at-4-30-58-PM.png' border='0' alt='Screenshot-2026-06-19-at-4-30-58-PM'></a>
 
 ---
 
@@ -45,7 +45,7 @@
 5. **Choose Target AI**: Select a **preset model** (such as **Chat-GPT, Claude, Grok** etc...) or input a **custom AI model**.
 6. **Create JailBreak Prompts**: **COPY** a generated "**JailBreak Vector**" and **PASTE** it into your **targeted AI**. These prompts **prime** the **targeted AI models** to **bypass safety filters** and deliver completely **uncensored responses** and **results** to your **subsequent queries.**
 
- 
+
  <p align="center">
     <img src="https://img.shields.io/badge/Jailbreak-The Realm-darkred.svg" alt="Zero Dependencies">
   </p>
