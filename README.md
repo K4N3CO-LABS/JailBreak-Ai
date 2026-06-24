@@ -32,7 +32,7 @@
 
 **Grok:**
 
-<a href='https://postimg.cc/B86KQXCw' target='_blank'><img src='https://i.postimg.cc/B86KQXCw/Screenshot-20260617-205334-X.jpg' border='0' alt='Screenshot-20260617-205334-X'></a> <a href='https://postimg.cc/Hcmj8n01' target='_blank'><img src='https://i.postimg.cc/Hcmj8n01/Screenshot-20260617-205944-X.jpg' border='0' alt='Screenshot-20260617-205944-X'></a>
+<a href="https://postimg.cc/8JRsy9t7" target="_blank"><img src="https://i.postimg.cc/8JRsy9t7/30480.jpg" alt="30480"></a> <a href="https://postimg.cc/LYthywNn" target="_blank"><img src="https://i.postimg.cc/LYthywNn/30482.jpg" alt="30482"></a>
 
 ---
 
