@@ -1,8 +1,10 @@
 [![Screenshot-20260618-000814-Bazaart.jpg](https://i.postimg.cc/pr5h6KmK/Screenshot-20260618-000814-Bazaart.jpg)](https://postimg.cc/zH5GLbSf)
   <p align="center">
-    <img src="https://img.shields.io/badge/Kotlin-2.4-blue.svg" alt="kotlin 2.4">
+    <img src="https://img.shields.io/badge/Ai Engine-Gemini Pro-gold.svg">
+    <img src="https://img.shields.io/badge/Focus-Adversarial Ai-red.svg">
+    <img src="https://img.shields.io/badge/Kotlin-2.4-orange.svg" alt="kotlin 2.4">
     <img src="https://img.shields.io/badge/License-MIT-darkblue.svg" alt="License: MIT">
-    <img src="https://img.shields.io/badge/Android-SDK-green.svg" alt="Claude Code">
+    <img src="https://img.shields.io/badge/Android-SDK-green.svg" alt="Android SDK">
   <p align="center">
     <img src="https://img.shields.io/badge/Jailbreak-The Realm-darkred.svg" alt="Zero Dependencies">
   </p>
